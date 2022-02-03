@@ -11,7 +11,7 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("Grass.jpg");
+		img = new Texture("2badlogic.jpg");
 	}
 
 	@Override
