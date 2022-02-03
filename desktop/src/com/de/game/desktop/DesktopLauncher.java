@@ -7,6 +7,8 @@ import com.de.game.Main;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+		config.setTitle("Dungeon Escape");
+		config.setMaximized(true);
 		new Lwjgl3Application(new Main(), config);
 	}
 }
