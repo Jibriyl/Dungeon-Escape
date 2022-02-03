@@ -12,5 +12,16 @@ public class Gameworld{
 
     Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
 
+    private float accumulator = 0;
 
+    /*public void doPhysicsStep(float deltaTime) {
+        // fixed time step
+        // max frame time to avoid spiral of death (on slow devices)
+        float frameTime = Math.min(deltaTime, 0.25f);
+        accumulator += frameTime;
+        while (accumulator >= 1/120f) {
+            world.step(1/120f, 6, 2);
+            accumulator -= 1/120f;
+        }
+    }*/
 }
