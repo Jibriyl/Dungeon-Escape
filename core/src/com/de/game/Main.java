@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	//Gameworld world1 = new Gameworld();
+	Gameworld world1 = new Gameworld();
 	
 	@Override
 	public void create () {
@@ -17,13 +17,16 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+		long start = System.nanoTime();
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
 		batch.draw(img, 0, 0);
 		batch.end();
 
+		float frametime = (System.nanoTime() - start) / 1000000000;
+		System.out.println(frametime);
 		//Updated alle Objekte die an die Welt gebunten sind.
-		//world1.doPhysicsStep(10f);
+		world1.doPhysicsStep(frametime);
 	}
 	
 	@Override
