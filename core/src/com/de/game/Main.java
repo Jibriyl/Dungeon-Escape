@@ -13,7 +13,7 @@ public class Main extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("Grass.jpg");
-	}
+		}
 
 	@Override
 	public void render () {
@@ -23,10 +23,11 @@ public class Main extends ApplicationAdapter {
 		batch.draw(img, 0, 0);
 		batch.end();
 
-		float frametime = (System.nanoTime() - start) / 1000000000;
+
+		long frametime = (System.nanoTime() - start);
 		System.out.println(frametime);
 		//Updated alle Objekte die an die Welt gebunten sind.
-		world1.doPhysicsStep(frametime);
+		//world1.doPhysicsStep(frametime);
 	}
 	
 	@Override

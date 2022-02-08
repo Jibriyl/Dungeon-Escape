@@ -14,7 +14,7 @@ public class Gameworld{
     public void doPhysicsStep(float deltaTime) {
         // fixed time step
         // max frame time to avoid spiral of death (on slow devices)
-        float frameTime = Math.min(deltaTime, 0.25f);
+        float frameTime = Math.min(deltaTime/1000000000, 0.25f);
         accumulator += frameTime;
         while (accumulator >= 1/120f) {
             world.step(1/120f, 6, 2);
