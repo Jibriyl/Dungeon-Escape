@@ -8,6 +8,11 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class MAIN_GAME extends ScreenAdapter{
 
     Main game;
+    Vector2 worldvector = new Vector2(0, 0);
+    World world = new World(worldvector, true);
+    private float accumulator = 0;
+    Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
+
 
     public MAIN_GAME (Main game){
         this.game = game;
@@ -35,7 +40,22 @@ public class MAIN_GAME extends ScreenAdapter{
             //Ermessen der Zeit die ein Frame benötigt hat
 			long frametime = (System.nanoTime() - start);
 			System.out.println(frametime);
+<<<<<<< HEAD
             
+=======
+            doPhysicsStep(frametime);
+    }
+
+    public void doPhysicsStep(float deltaTime) {
+        // fixed time step
+        // max frame time to avoid spiral of death (on slow devices)
+        float frameTime = Math.min(deltaTime/1000000000, 0.25f);
+        accumulator += frameTime;
+        while (accumulator >= 1/120f) {
+            world.step(1/120f, 6, 2);
+            accumulator -= 1/120f;
+        }
+>>>>>>> 4c35067b5007edfbb0705fbb903f6c94ec53d468
     }
 
     
