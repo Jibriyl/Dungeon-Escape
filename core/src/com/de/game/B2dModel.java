@@ -11,6 +11,7 @@ public class B2dModel {
 	public B2dModel(){
 		world = new World(new Vector2(0,-10f), true);
         BodyFactory bodyFactory = BodyFactory.getInstance(world);
+        world.setContactListener(new B2dContactListener(this));
         bodyFactory.makeCircle(0, 0, 2, BodyFactory.RUBBER);
         bodyFactory.makeBox(0, -30, 128, 2, BodyFactory.STEEL, BodyType.StaticBody);
 	}
