@@ -20,7 +20,7 @@ public class Main extends Game {
         img = new Texture("Grass.jpg");
         
         //Setzen des Spart Screens
-		setScreen(new MAIN_MENU(this));
+		setScreen(new MAIN_GAME(this));
         }
 
     @Override
