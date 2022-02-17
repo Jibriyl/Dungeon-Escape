@@ -14,6 +14,12 @@ public class B2dModel {
         world.setContactListener(new B2dContactListener(this));
         bodyFactory.makeCircle(0, 0, 2, BodyFactory.RUBBER);
         bodyFactory.makeBox(0, -30, 128, 2, BodyFactory.STEEL, BodyType.StaticBody);
+        bodyFactory.makeBox(0, 30, 128, 2, BodyFactory.STEEL, BodyType.StaticBody);
+        bodyFactory.makeBox(-40, 0, 2, 72, BodyFactory.STEEL, BodyType.StaticBody);
+        bodyFactory.makeBox(40, 0, 2, 72, BodyFactory.STEEL, BodyType.StaticBody);
+
+        bodyFactory.makeBox(0, 20, 2, 2, BodyFactory.RUBBER, BodyType.DynamicBody);
+
 	}
 
 
