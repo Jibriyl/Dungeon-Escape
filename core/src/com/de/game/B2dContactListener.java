@@ -22,10 +22,17 @@ public class B2dContactListener implements ContactListener {
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
         System.out.println(fa.getBody().getType()+" has hit "+ fb.getBody().getType());
+		if(fa.getBody().getUserData() == "IAMTHESEA"){
+			System.out.println("WATERRRRRR");
+			return;
+		}else if(fb.getBody().getUserData() == "IAMTHESEA"){
+			System.out.println("WATERRRRRR");
+			return;
+		}
 	}
 
 	@Override
-	public void endContact(Contact contact) {		
+	public void endContact(Contact contact) {	
 	}
 
 	@Override

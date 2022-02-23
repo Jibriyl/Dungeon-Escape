@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
@@ -118,24 +119,10 @@ public class BodyFactory {
             
         return boxBody;
     }
-
-    public void makeConeSensor(Body body, float size){
-		
-        FixtureDef fixtureDef = new FixtureDef();
-        //fixtureDef.isSensor = true; // will add in future
-            
-        PolygonShape polygon = new PolygonShape();
-            
-        float radius = size;
-        Vector2[] vertices = new Vector2[5];
-        vertices[0] = new Vector2(0,0);
-        for (int i = 2; i < 6; i++) {
-            float angle = (float) (i  / 6.0 * 145 * DEGTORAD); // convert degrees to radians
-            vertices[i-1] = new Vector2( radius * ((float)Math.cos(angle)), radius * ((float)Math.sin(angle)));
+    
+    public void makeAllFixturesSensors(Body bod){
+        for(Fixture fix :bod.getFixtureList()){
+            fix.setSensor(true);
         }
-        polygon.set(vertices);
-        fixtureDef.shape = polygon;
-        body.createFixture(fixtureDef);
-        polygon.dispose();
     }
 }

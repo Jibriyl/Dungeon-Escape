@@ -17,7 +17,7 @@ public class MAIN_GAME extends ScreenAdapter{
     public MAIN_GAME (Main game){
         this.game = game;
         model = new B2dModel();
-        cam = new OrthographicCamera(128,72);
+        cam = new OrthographicCamera(192,108);
         debugRenderer = new Box2DDebugRenderer(true,true,true,true,true,true);
     }
 

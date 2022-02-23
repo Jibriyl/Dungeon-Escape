@@ -10,7 +10,7 @@ public class DesktopLauncher {
 		config.setTitle("Dungeon Escape");
 		config.setForegroundFPS(120);
 		config.setIdleFPS(120);
-		config.setWindowedMode(1280, 720);
+		config.setMaximized(true);
 		//config.setMaximized(true);
 		new Lwjgl3Application(new Main(), config);
 	}
