@@ -5,6 +5,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.de.game.controller.KeyboardController;
 
 public class MAIN_GAME extends ScreenAdapter{
 
@@ -12,18 +13,20 @@ public class MAIN_GAME extends ScreenAdapter{
     private B2dModel model;
     private OrthographicCamera cam;
     private Box2DDebugRenderer debugRenderer;
+    private KeyboardController controller;
 
 
     public MAIN_GAME (Main game){
         this.game = game;
-        model = new B2dModel();
+        controller = new KeyboardController();
+        model = new B2dModel(controller);
         cam = new OrthographicCamera(192,108);
         debugRenderer = new Box2DDebugRenderer(true,true,true,true,true,true);
     }
 
     @Override
     public void show(){
-
+        Gdx.input.setInputProcessor(controller);
     }
 
     @Override
