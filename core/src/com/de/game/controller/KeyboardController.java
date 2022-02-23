@@ -5,11 +5,12 @@ import com.badlogic.gdx.Input.Keys;
 
 public class KeyboardController implements InputProcessor{
 
-    public boolean left,right,up,down;
+    public boolean left,right,up,down,space;
 
     @Override
 	public boolean keyDown(int keycode) {
 	boolean keyProcessed = false;
+
 	switch (keycode) // switch code base on the variable keycode
         {
 	        case Keys.A:
@@ -28,7 +29,13 @@ public class KeyboardController implements InputProcessor{
 	            down = true;
 	            keyProcessed = true;
         }
-	return keyProcessed;	//  return our peyProcessed flag
+    if (Keys.SPACE == keycode){
+        space = true;
+        keyProcessed = true;
+    }
+
+    
+	return keyProcessed;	//  return our keyProcessed flag
     }
 
     @Override
@@ -52,6 +59,10 @@ public class KeyboardController implements InputProcessor{
 	            down = false;
 	            keyProcessed = true;
         }
+    if (Keys.SPACE == keycode){
+        space = false;
+        keyProcessed = true;
+    }
 	return keyProcessed;	//  return our peyProcessed flag
 }
 

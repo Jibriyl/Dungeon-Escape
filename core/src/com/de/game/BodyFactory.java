@@ -41,7 +41,7 @@ public class BodyFactory {
         case 0:
             fixtureDef.density = 1f;
             fixtureDef.friction = 1f;
-            fixtureDef.restitution = 0.1f;
+            fixtureDef.restitution = 0f;
             break;
         case 1:
             fixtureDef.density = 0.5f;
@@ -61,6 +61,7 @@ public class BodyFactory {
             fixtureDef.density = 7f;
             fixtureDef.friction = 0.5f;
             fixtureDef.restitution = 0.3f;
+
         }
         return fixtureDef;
     }
@@ -69,6 +70,7 @@ public class BodyFactory {
         // create a definition
         BodyDef boxBodyDef = new BodyDef();
         boxBodyDef.type = bodyType;
+        boxBodyDef.linearDamping = 4f;
         boxBodyDef.position.x = posx;
         boxBodyDef.position.y = posy;
         boxBodyDef.fixedRotation = fixedRotation;
@@ -89,6 +91,7 @@ public class BodyFactory {
         // create a definition
         BodyDef boxBodyDef = new BodyDef();
         boxBodyDef.type = bodyType;
+        boxBodyDef.linearDamping = 4f;
         boxBodyDef.position.x = posx;
         boxBodyDef.position.y = posy;
         boxBodyDef.fixedRotation = fixedRotation;
@@ -108,6 +111,7 @@ public class BodyFactory {
     public Body makePolygonShapeBody(Vector2[] vertices, float posx, float posy, int material, BodyType bodyType){
         BodyDef boxBodyDef = new BodyDef();
         boxBodyDef.type = bodyType;
+        boxBodyDef.linearDamping = 4f;
         boxBodyDef.position.x = posx;
         boxBodyDef.position.y = posy;
         Body boxBody = world.createBody(boxBodyDef);
