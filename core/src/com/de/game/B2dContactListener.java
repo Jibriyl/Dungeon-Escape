@@ -22,14 +22,6 @@ public class B2dContactListener implements ContactListener {
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
         System.out.println(fa.getBody().getType()+" has hit "+ fb.getBody().getType());
-
-        if(fa.getBody().getType() == BodyType.StaticBody){
-            this.shootUpInAir(fb);
-        }else if(fb.getBody().getType() == BodyType.StaticBody){
-            this.shootUpInAir(fa);
-        }else{
-            // neither a nor b are static so do nothing
-        }
 	}
 
 	@Override
@@ -43,10 +35,4 @@ public class B2dContactListener implements ContactListener {
 	@Override
 	public void postSolve(Contact contact, ContactImpulse impulse) {		
 	}
-    
-    private void shootUpInAir(Fixture otherFixture){
-        otherFixture.getBody().applyForceToCenter(new Vector2(-1,0), true);
-        System.out.println("Adding Force");
-    }
-
 }
