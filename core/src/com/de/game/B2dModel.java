@@ -19,7 +19,7 @@ public class B2dModel {
         BodyFactory bodyFactory = BodyFactory.getInstance(world);
         world.setContactListener(new B2dContactListener(this));
         controller = cont;
-        player = new Player(10, 100, 200, 20);
+        player = new Player(10, 100, 300, 20);
         zeit = 0;
 
 
