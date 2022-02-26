@@ -4,11 +4,14 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.de.game.loader.B2dAssetManager;
 
 public class Main extends Game {
     SpriteBatch batch;
     Texture img;
 	BitmapFont font;
+    public B2dAssetManager assetManager = new B2dAssetManager();
+
 
 
     @Override
@@ -17,7 +20,6 @@ public class Main extends Game {
         batch = new SpriteBatch();
         font = new BitmapFont();
         // Laden der Assets in des Spiel
-        img = new Texture("Grass.jpg");
         
         //Setzen des Spart Screens
 		setScreen(new MAIN_GAME(this));
@@ -27,6 +29,5 @@ public class Main extends Game {
     public void dispose () {
         //Löschen der Objekte wenn sie nicht mehr benötigt werden
         batch.dispose();
-        img.dispose();
     }
 }

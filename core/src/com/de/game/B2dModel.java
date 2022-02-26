@@ -10,7 +10,7 @@ import com.de.game.controller.KeyboardController;
 public class B2dModel {
 	public World world;
     private KeyboardController controller;
-    private Body playerbody;
+    public Body playerbody;
     Player player;
     double zeit;
 
@@ -19,25 +19,28 @@ public class B2dModel {
         BodyFactory bodyFactory = BodyFactory.getInstance(world);
         world.setContactListener(new B2dContactListener(this));
         controller = cont;
-        player = new Player(10, 100, 300, 20);
+        player = new Player(10, 100, 500, 20);
         zeit = 0;
 
 
-        playerbody =  bodyFactory.makeCircle(0, 0, 2, BodyFactory.STEEL);
         Body water = bodyFactory.makeBox(0, -24, 128, 2, BodyFactory.STEEL, BodyType.StaticBody);
         water.setUserData("IAMTHESEA");
         bodyFactory.makeAllFixturesSensors(water);
 
+        //Erstellen des PlayerBody
+        playerbody =  bodyFactory.makeBox(0, 0, 7, 16, BodyFactory.STEEL, BodyType.DynamicBody);
+        bodyFactory.makeCircle(0, 0, 2, BodyFactory.RUBBER);
+
         //Erstellen des Leveldesign
         //Raumstruktur
         //Außenwand Oben
-        bodyFactory.makeBox(0, 46, 192, 1, BodyFactory.STEEL, BodyType.StaticBody);
+        bodyFactory.makeBox(0, 38, 192, 1, BodyFactory.STEEL, BodyType.StaticBody);
         //Außenwand Links
-        bodyFactory.makeBox(-92, 0, 1, 108, BodyFactory.STEEL, BodyType.StaticBody);
+        bodyFactory.makeBox(-93.5f, 0, 1, 108, BodyFactory.STEEL, BodyType.StaticBody);
         //Außenwand Rechts
-        bodyFactory.makeBox(92, 0, 1, 108, BodyFactory.STEEL, BodyType.StaticBody);
+        bodyFactory.makeBox(93.5f, 0, 1, 108, BodyFactory.STEEL, BodyType.StaticBody);
         //Außenwand Unten
-        bodyFactory.makeBox(0, -48, 192, 1, BodyFactory.STEEL, BodyType.StaticBody);
+        bodyFactory.makeBox(0, -51.8f, 192, 1, BodyFactory.STEEL, BodyType.StaticBody);
 
 
 

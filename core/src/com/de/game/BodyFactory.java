@@ -39,8 +39,8 @@ public class BodyFactory {
             
         switch(material){
         case 0:
-            fixtureDef.density = 1f;
-            fixtureDef.friction = 1f;
+            fixtureDef.density = 0.06f;
+            fixtureDef.friction = 0.3f;
             fixtureDef.restitution = 0f;
             break;
         case 1:
@@ -105,7 +105,7 @@ public class BodyFactory {
         return boxBody;
     }
     public Body makeBox(float posx, float posy, float lenght, float height, int material, BodyType bodyType){
-        return makeBox( posx,  posy, lenght, height,  material, bodyType, false);
+        return makeBox( posx,  posy, lenght, height,  material, bodyType, true);
     }
 
     public Body makePolygonShapeBody(Vector2[] vertices, float posx, float posy, int material, BodyType bodyType){
