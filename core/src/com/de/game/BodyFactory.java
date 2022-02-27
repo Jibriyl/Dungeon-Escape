@@ -13,7 +13,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
 public class BodyFactory {
 	
-    private final float DEGTORAD = 0.0174533f;
 	private static BodyFactory thisInstance;
     private World world;
     public static final int STEEL = 0;
