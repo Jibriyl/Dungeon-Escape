@@ -8,9 +8,9 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 public class B2dContactListener implements ContactListener {
 
-	private B2dModel parent;
+	private LVL1_Model parent;
 	
-	public B2dContactListener(B2dModel parent){
+	public B2dContactListener(LVL1_Model parent){
 		this.parent = parent;
 	}
 

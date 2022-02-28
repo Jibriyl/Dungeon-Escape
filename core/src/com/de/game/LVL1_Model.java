@@ -7,21 +7,20 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.de.game.controller.KeyboardController;
 
 
-public class B2dModel {
+public class LVL1_Model {
 	public World world;
     private KeyboardController controller;
     public Body playerbody;
     Player player;
     double zeit;
 
-	public B2dModel(KeyboardController cont){
+	public LVL1_Model(KeyboardController cont){
 		world = new World(new Vector2(0,0), true);
         BodyFactory bodyFactory = BodyFactory.getInstance(world);
         world.setContactListener(new B2dContactListener(this));
         controller = cont;
-        player = new Player(10, 100, 500, 20);
+        player = new Player(10, 100, 1000, 20);
         zeit = 0;
-
 
         Body water = bodyFactory.makeBox(0, -24, 128, 2, BodyFactory.STEEL, BodyType.StaticBody);
         water.setUserData("IAMTHESEA");
@@ -41,9 +40,6 @@ public class B2dModel {
         bodyFactory.makeBox(93.5f, 0, 1, 108, BodyFactory.STEEL, BodyType.StaticBody);
         //Außenwand Unten
         bodyFactory.makeBox(0, -51.8f, 192, 1, BodyFactory.STEEL, BodyType.StaticBody);
-
-
-
 	}
 
     public void logicStep(float delta){
@@ -62,7 +58,7 @@ public class B2dModel {
         if(controller.space){
             if(zeit >= 1){
                 System.out.println("Space");
-                zeit =- 0;
+                zeit = 0;
             }
         }
         zeit = zeit + delta;

@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 
 public class KeyboardController implements InputProcessor{
 
+    //Maybe diese noch private setzen und mit getmethode zugänglich machen
     public boolean left,right,up,down,space;
 
     @Override

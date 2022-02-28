@@ -22,7 +22,7 @@ public class Main extends Game {
         // Laden der Assets in des Spiel
         
         //Setzen des Spart Screens
-		setScreen(new MAIN_GAME(this));
+		setScreen(new MAIN_GAME_LVL1(this));
         }
 
     @Override
