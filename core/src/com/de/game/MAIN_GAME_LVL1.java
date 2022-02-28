@@ -83,7 +83,7 @@ public class MAIN_GAME_LVL1 extends ScreenAdapter{
         //Wird alle 0,125 sek ausführt, ist für den wechsel der grafiken beim laufen, und FPS anzeige
         zeit2 = zeit2 + delta;
         if(zeit2 >= 0.125f){
-            fpsanzeige = "" + 60/delta;
+            fpsanzeige = "" + 1/    delta;
             zeit2 = 0;
         }
         
