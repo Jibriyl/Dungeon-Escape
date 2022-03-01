@@ -29,6 +29,8 @@ import com.de.game.entity.systems.PhysicsDebugSystem;
 import com.de.game.entity.systems.PhysicsSystem;
 import com.de.game.entity.systems.PlayerControlSystem;
 import com.de.game.entity.systems.RenderingSystem;
+import com.de.game.manager.Enemymanager;
+import com.de.game.manager.Playermanager;
 
 public class LVL_1 extends ScreenAdapter{
 
@@ -43,7 +45,6 @@ public class LVL_1 extends ScreenAdapter{
     private PooledEngine engine;
     private World world;
     private BodyFactory bodyFactory;
-    private TextureAtlas testplayer;
 
     public LVL_1 (Main game){
         this.game = game;
@@ -53,11 +54,11 @@ public class LVL_1 extends ScreenAdapter{
         bodyFactory = BodyFactory.getInstance(world);
         cam = new OrthographicCamera(192,108);
 
+
         game.assetManager.queueAddImages();
         game.assetManager.manager.finishLoading();
 
         lvl1background = game.assetManager.manager.get("Input/game/lvl1background.png");
-        testplayer = game.assetManager.manager.get("Output/testchar.atlas");
 
 
         sb = new SpriteBatch();
@@ -69,13 +70,16 @@ public class LVL_1 extends ScreenAdapter{
 
         engine = new PooledEngine();
 
+        Playermanager pm = new Playermanager(bodyFactory, engine, game);
+        Enemymanager em = new Enemymanager();
+
         engine.addSystem(renderingSystem);
         engine.addSystem(new PhysicsSystem(world));
         engine.addSystem(new CollisionSystem());
         engine.addSystem(new PlayerControlSystem(controller));
-        //engine.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
+        engine.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
 
-        createPlayer();
+        pm.createbasicPlayer();
         createWall(96, 2, 192, 1);
         createWall(96, 92, 192, 1);
         createWall(2, 54, 1, 108);
@@ -94,47 +98,8 @@ public class LVL_1 extends ScreenAdapter{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         engine.update(delta);
+    }
 
-        
-    }
-    private void createPlayer(){
- 
-        // Create the Entity and all the components that will go in the entity
-        Entity entity = engine.createEntity();
-        B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
-        TransformComponent position = engine.createComponent(TransformComponent.class);
-        TextureComponent texture = engine.createComponent(TextureComponent.class);
-        PlayerComponent player = engine.createComponent(PlayerComponent.class);
-        CollisionComponent colComp = engine.createComponent(CollisionComponent.class);
-        TypeComponent type = engine.createComponent(TypeComponent.class);
-        StateComponent stateCom = engine.createComponent(StateComponent.class);
-     
-        // create the data for the components and add them to the components
-        b2dbody.body = bodyFactory.makeBox(50, 50, 7, 16, BodyFactory.PLAYER, BodyType.DynamicBody);
-        //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
-        b2dbody.setdimension(7, 16);
-        //Setzen der Playerstats Damage, Leben, Speed, Rüstung
-        player.setStats(10, 100, 500, 20);
-        //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
-        position.position.set(0,0,0);
-        texture.region = testplayer.findRegion("player1");
-        type.type = TypeComponent.PLAYER;
-        stateCom.set(StateComponent.STATE_NORMAL); 
-        b2dbody.body.setUserData(entity);
-     
-        //Alle Kompenenten des Spieler der Spieler Entity hinzufügen
-        entity.add(b2dbody);
-        entity.add(position);
-        entity.add(texture);
-        entity.add(player);
-        entity.add(colComp);
-        entity.add(type);
-        entity.add(stateCom);
-     
-        //Die Entity in die engine adden
-        engine.addEntity(entity);
-            
-    }
 
     private void createWall(float x, float y, float width, float height){
         Entity entity = engine.createEntity();
