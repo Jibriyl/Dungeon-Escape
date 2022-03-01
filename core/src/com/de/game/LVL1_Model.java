@@ -17,7 +17,6 @@ public class LVL1_Model {
 	public LVL1_Model(KeyboardController cont){
 		world = new World(new Vector2(0,0), true);
         BodyFactory bodyFactory = BodyFactory.getInstance(world);
-        world.setContactListener(new B2dContactListener(this));
         controller = cont;
         player = new Player(10, 100, 1000, 20);
         zeit = 0;

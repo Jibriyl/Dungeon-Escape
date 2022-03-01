@@ -1,5 +1,6 @@
 package com.de.game;
 
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -7,55 +8,76 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+//Eigene Klassen importieren
 import com.de.game.controller.KeyboardController;
+import com.de.game.entity.components.B2dBodyComponent;
+import com.de.game.entity.components.CollisionComponent;
+import com.de.game.entity.components.PlayerComponent;
+import com.de.game.entity.components.StateComponent;
+import com.de.game.entity.components.TextureComponent;
+import com.de.game.entity.components.TransformComponent;
+import com.de.game.entity.components.TypeComponent;
+import com.de.game.entity.systems.CollisionSystem;
+import com.de.game.entity.systems.PhysicsDebugSystem;
+import com.de.game.entity.systems.PhysicsSystem;
+import com.de.game.entity.systems.PlayerControlSystem;
+import com.de.game.entity.systems.RenderingSystem;
 
 public class MAIN_GAME_LVL1 extends ScreenAdapter{
 
     Main game;
-    private LVL1_Model model;
     private OrthographicCamera cam;
-    private Box2DDebugRenderer debugRenderer;
     private KeyboardController controller;
 
     private Texture lvl1background;
 
     private SpriteBatch sb;
 
-    private Texture playerTex;
-    private float zeit;
-    private float zeit2;
-    private String fpsanzeige = "0";
     private PooledEngine engine;
+    private World world;
+    private BodyFactory bodyFactory;
+    private TextureAtlas testplayer;
 
     public MAIN_GAME_LVL1 (Main game){
         this.game = game;
         controller = new KeyboardController();
-        world = new World(new Vector2(0,-10f), true);
+		world = new World(new Vector2(0,0), true);
         world.setContactListener(new B2dContactListener());
         bodyFactory = BodyFactory.getInstance(world);
-            
-        parent.assMan.queueAddSounds();
-        parent.assMan.manager.finishLoading();
-
-        controller = new KeyboardController();
-        model = new LVL1_Model(controller);
         cam = new OrthographicCamera(192,108);
-
-
-
-        debugRenderer = new Box2DDebugRenderer(true,true,true,true,true,true);
-        sb = new SpriteBatch();
-        sb.setProjectionMatrix(cam.combined);
-
-        engine = new PooledEngine();
-
 
         game.assetManager.queueAddImages();
         game.assetManager.manager.finishLoading();
 
-        lvl1background = game.assetManager.manager.get("lvl1background.png");
-        playerTex = game.assetManager.manager.get("player1.png");
+        lvl1background = game.assetManager.manager.get("Input/game/lvl1background.png");
+        testplayer = game.assetManager.manager.get("Output/testchar.atlas");
+
+
+        sb = new SpriteBatch();
+        // Create our new rendering system
+        RenderingSystem renderingSystem = new RenderingSystem(sb);
+        cam = renderingSystem.getCamera();
+        sb.setProjectionMatrix(cam.combined);
+        renderingSystem.setBackground(lvl1background);
+
+        engine = new PooledEngine();
+
+        engine.addSystem(renderingSystem);
+        engine.addSystem(new PhysicsSystem(world));
+        engine.addSystem(new CollisionSystem());
+        engine.addSystem(new PlayerControlSystem(controller));
+        engine.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
+
+        createPlayer();
+        createWall(96, 2, 192, 1);
+        createWall(96, 92, 192, 1);
+        createWall(2, 54, 1, 108);
+        createWall(190, 54, 1, 108);
+
     }
 
     @Override
@@ -65,50 +87,64 @@ public class MAIN_GAME_LVL1 extends ScreenAdapter{
 
     @Override
     public void render(float delta){
-        model.logicStep(delta);
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        sb.begin();
-        sb.draw(lvl1background, -96, -54, 192, 108);
-        //Abschnitt der jede sekunde einmal ausgeführt wird
-        zeit = zeit + delta;
-        if(zeit <= 0.125){
-            sb.draw(playerTex, model.playerbody.getPosition().x - 3.5f, model.playerbody.getPosition().y - 8, 7, 16);
-        }
-        else if(zeit >= 0.125f){
-            if(controller.up){
+        engine.update(delta);
 
-            }
-            else if(controller.down){
-    
-            }
-            else if(controller.left){
-    
-            }
-            else if(controller.right){
-    
-            }
-            else{
-                sb.draw(playerTex, model.playerbody.getPosition().x - 3.5f, model.playerbody.getPosition().y - 8, 7, 16);
-            }
-        }
-        if(zeit >= 0.25f){
-            zeit = 0;
-        }
-        //Wird alle 0,125 sek ausführt, ist für den wechsel der grafiken beim laufen, und FPS anzeige
-        zeit2 = zeit2 + delta;
-        if(zeit2 >= 0.125f){
-            fpsanzeige = "" + 1/delta;
-            zeit2 = 0;
-        }
         
+    }
+    private void createPlayer(){
+ 
+        // Create the Entity and all the components that will go in the entity
+        Entity entity = engine.createEntity();
+        B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
+        TransformComponent position = engine.createComponent(TransformComponent.class);
+        TextureComponent texture = engine.createComponent(TextureComponent.class);
+        PlayerComponent player = engine.createComponent(PlayerComponent.class);
+        CollisionComponent colComp = engine.createComponent(CollisionComponent.class);
+        TypeComponent type = engine.createComponent(TypeComponent.class);
+        StateComponent stateCom = engine.createComponent(StateComponent.class);
+     
+        // create the data for the components and add them to the components
+        b2dbody.body = bodyFactory.makeBox(50, 50, 7, 16, BodyFactory.PLAYER, BodyType.DynamicBody);
+        b2dbody.setdimension(7, 16);
+        //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
+        position.position.set(0,0,0);
+        texture.region = testplayer.findRegion("player1");
+        type.type = TypeComponent.PLAYER;
+        stateCom.set(StateComponent.STATE_NORMAL); 
+        b2dbody.body.setUserData(entity);
+     
+        //Alle Kompenenten des Spieler der Spieler Entity hinzufügen
+        entity.add(b2dbody);
+        entity.add(position);
+        entity.add(texture);
+        entity.add(player);
+        entity.add(colComp);
+        entity.add(type);
+        entity.add(stateCom);
+     
+        //Die Entity in die engine adden
+        engine.addEntity(entity);
+            
+    }
 
-
-        game.font.draw(sb, fpsanzeige, 50, 50); //FPS anzeige, muss noch gefixt werden
-        sb.end();
-        debugRenderer.render(model.world, cam.combined);
-
-
+    private void createWall(float x, float y, float width, float height){
+        Entity entity = engine.createEntity();
+        B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
+        b2dbody.body = bodyFactory.makeBox(x, y, width, height, BodyFactory.STONE, BodyType.StaticBody);
+        TextureComponent texture = engine.createComponent(TextureComponent.class);
+        TypeComponent type = engine.createComponent(TypeComponent.class);
+        type.type = TypeComponent.SCENERY;
+        
+        b2dbody.body.setUserData(entity);
+     
+        entity.add(b2dbody);
+        entity.add(texture);
+        entity.add(type);
+        
+        engine.addEntity(entity);
     }
 }
+

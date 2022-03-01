@@ -9,7 +9,6 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.gdx.math.MathUtils;
 
 public class PlayerControlSystem extends IteratingSystem{
 
@@ -41,16 +40,16 @@ public class PlayerControlSystem extends IteratingSystem{
 		
 
         if(controller.up){
-			b2body.body.setLinearVelocity(MathUtils.lerp(b2body.body.getLinearVelocity().x, 0, 5f),b2body.body.getLinearVelocity().y);
+			b2body.body.applyForceToCenter(0, 500,true);
 		}
         if(controller.down){
-			b2body.body.setLinearVelocity(MathUtils.lerp(b2body.body.getLinearVelocity().x, 0, 5f),b2body.body.getLinearVelocity().y);
+			b2body.body.applyForceToCenter(0, -500,true);
 		}
         if(controller.left){
-			b2body.body.setLinearVelocity(MathUtils.lerp(b2body.body.getLinearVelocity().x, -5f, 0),b2body.body.getLinearVelocity().y);
+			b2body.body.applyForceToCenter(-500f, 0,true);;
 		}
 		if(controller.right){
-			b2body.body.setLinearVelocity(MathUtils.lerp(b2body.body.getLinearVelocity().x, 5f, 0),b2body.body.getLinearVelocity().y);
+			b2body.body.applyForceToCenter(500, 0,true);
 		}
 	}
 }

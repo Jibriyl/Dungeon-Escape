@@ -2,6 +2,7 @@ package com.de.game.entity.systems;
 
 import com.de.game.entity.components.TextureComponent;
 import com.de.game.entity.components.TransformComponent;
+import com.de.game.entity.components.B2dBodyComponent;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
@@ -9,6 +10,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.SortedIteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -17,7 +19,7 @@ import java.util.Comparator;
 
 public class RenderingSystem extends SortedIteratingSystem {
 
-    static final float PPM = 32.0f; // sets the amount of pixels each metre of box2d objects contains
+    static final float PPM = 10.0f; // sets the amount of pixels each metre of box2d objects contains
 
     // this gets the height and width of our camera frustrum based off the width and height of the screen and our pixel per meter ratio
     static final float FRUSTUM_WIDTH = Gdx.graphics.getWidth()/PPM;
@@ -53,6 +55,9 @@ public class RenderingSystem extends SortedIteratingSystem {
     // component mappers to get components from entities
     private ComponentMapper<TextureComponent> textureM;
     private ComponentMapper<TransformComponent> transformM;
+    private ComponentMapper<B2dBodyComponent> bodyM;
+
+    private Texture lvl1background;
 
     @SuppressWarnings("unchecked")
 	public RenderingSystem(SpriteBatch batch) {
@@ -62,6 +67,7 @@ public class RenderingSystem extends SortedIteratingSystem {
         //creates out componentMappers
         textureM = ComponentMapper.getFor(TextureComponent.class);
         transformM = ComponentMapper.getFor(TransformComponent.class);
+        bodyM = ComponentMapper.getFor(B2dBodyComponent.class);
 
         // create the array for sorting entities
         renderQueue = new Array<Entity>();
@@ -86,28 +92,19 @@ public class RenderingSystem extends SortedIteratingSystem {
         batch.enableBlending();
         batch.begin();
 
+        batch.draw(lvl1background, 0, 0, 192, 108);
+
         // loop through each entity in our render queue
         for (Entity entity : renderQueue) {
             TextureComponent tex = textureM.get(entity);
             TransformComponent t = transformM.get(entity);
+            B2dBodyComponent body = bodyM.get(entity);
 
             if (tex.region == null || t.isHidden) {
                 continue;
             }
 
-
-            float width = tex.region.getRegionWidth();
-            float height = tex.region.getRegionHeight();
-
-            float originX = width/2f;
-            float originY = height/2f;
-
-            batch.draw(tex.region,
-                    t.position.x - originX, t.position.y - originY,
-                    originX, originY,
-                    width, height,
-                    PixelsToMeters(t.scale.x), PixelsToMeters(t.scale.y),
-                    t.rotation);
+            batch.draw(tex.region, (t.position.x - (body.getWidth()/2)), (t.position.y - (body.getHeight()/2)), body.getWidth(), body.getHeight());
         }
 
         batch.end();
@@ -122,5 +119,8 @@ public class RenderingSystem extends SortedIteratingSystem {
     // convenience method to get camera
     public OrthographicCamera getCamera() {
         return cam;
+    }
+    public void setBackground(Texture background){
+        lvl1background = background;
     }
 }

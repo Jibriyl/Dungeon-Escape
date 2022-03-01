@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.Array;
 
 public class PhysicsSystem extends IteratingSystem {
 
-    private static final float MAX_STEP_TIME = 1/45f;
+    private static final float MAX_STEP_TIME = 1/60f;
     private static float accumulator = 0f;
 
     private World world;
@@ -24,7 +24,6 @@ public class PhysicsSystem extends IteratingSystem {
     private ComponentMapper<B2dBodyComponent> bm = ComponentMapper.getFor(B2dBodyComponent.class);
     private ComponentMapper<TransformComponent> tm = ComponentMapper.getFor(TransformComponent.class);
 
-    @SuppressWarnings("unchecked")
 	public PhysicsSystem(World world) {
         super(Family.all(B2dBodyComponent.class, TransformComponent.class).get());
         this.world = world;
@@ -34,7 +33,7 @@ public class PhysicsSystem extends IteratingSystem {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        float frameTime = Math.min(deltaTime, 0.25f);
+        float frameTime = Math.min(deltaTime, 0.5f);
         accumulator += frameTime;
         if(accumulator >= MAX_STEP_TIME) {
             world.step(MAX_STEP_TIME, 6, 2);
