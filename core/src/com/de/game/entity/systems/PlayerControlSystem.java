@@ -28,6 +28,7 @@ public class PlayerControlSystem extends IteratingSystem{
 	protected void processEntity(Entity entity, float deltaTime) {
 		B2dBodyComponent b2body = bodm.get(entity);
 		StateComponent state = sm.get(entity);
+		PlayerComponent player = pm.get(entity);
 		
 		if(b2body.body.getLinearVelocity().y == 0 && b2body.body.getLinearVelocity().x == 0){
 			if(state.get() == StateComponent.STATE_IN_DASH){
@@ -40,16 +41,16 @@ public class PlayerControlSystem extends IteratingSystem{
 		
 
         if(controller.up){
-			b2body.body.applyForceToCenter(0, 500,true);
+			b2body.body.applyForceToCenter(0, player.getSpeed(),true);
 		}
         if(controller.down){
-			b2body.body.applyForceToCenter(0, -500,true);
+			b2body.body.applyForceToCenter(0, -player.getSpeed(),true);
 		}
         if(controller.left){
-			b2body.body.applyForceToCenter(-500f, 0,true);;
+			b2body.body.applyForceToCenter(-player.getSpeed(), 0,true);;
 		}
 		if(controller.right){
-			b2body.body.applyForceToCenter(500, 0,true);
+			b2body.body.applyForceToCenter(player.getSpeed(), 0,true);
 		}
 	}
 }

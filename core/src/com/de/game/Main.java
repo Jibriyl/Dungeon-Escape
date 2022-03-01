@@ -5,11 +5,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.de.game.loader.B2dAssetManager;
+import com.de.game.scenes.LVL_1;
+import com.de.game.scenes.MAIN_MENU;
 
 public class Main extends Game {
-    SpriteBatch batch;
-    Texture img;
-	BitmapFont font;
+    public SpriteBatch batch;
+    public Texture img;
+	public BitmapFont font;
     public B2dAssetManager assetManager = new B2dAssetManager();
 
 
@@ -22,7 +24,8 @@ public class Main extends Game {
         // Laden der Assets in des Spiel
         
         //Setzen des Spart Screens
-		setScreen(new MAIN_GAME_LVL1(this));
+        //setScreen(new MAIN_MENU(this));
+		setScreen(new LVL_1(this));
         }
 
     @Override

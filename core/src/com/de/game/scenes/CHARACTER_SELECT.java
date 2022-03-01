@@ -1,6 +1,7 @@
-package com.de.game;
+package com.de.game.scenes;
 
 import com.badlogic.gdx.ScreenAdapter;
+import com.de.game.Main;
 
 public class CHARACTER_SELECT extends ScreenAdapter{
 

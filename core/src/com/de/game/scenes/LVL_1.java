@@ -1,4 +1,4 @@
-package com.de.game;
+package com.de.game.scenes;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
@@ -12,6 +12,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.de.game.B2dContactListener;
+import com.de.game.BodyFactory;
+import com.de.game.Main;
 //Eigene Klassen importieren
 import com.de.game.controller.KeyboardController;
 import com.de.game.entity.components.B2dBodyComponent;
@@ -27,7 +30,7 @@ import com.de.game.entity.systems.PhysicsSystem;
 import com.de.game.entity.systems.PlayerControlSystem;
 import com.de.game.entity.systems.RenderingSystem;
 
-public class MAIN_GAME_LVL1 extends ScreenAdapter{
+public class LVL_1 extends ScreenAdapter{
 
     Main game;
     private OrthographicCamera cam;
@@ -42,7 +45,7 @@ public class MAIN_GAME_LVL1 extends ScreenAdapter{
     private BodyFactory bodyFactory;
     private TextureAtlas testplayer;
 
-    public MAIN_GAME_LVL1 (Main game){
+    public LVL_1 (Main game){
         this.game = game;
         controller = new KeyboardController();
 		world = new World(new Vector2(0,0), true);
@@ -70,7 +73,7 @@ public class MAIN_GAME_LVL1 extends ScreenAdapter{
         engine.addSystem(new PhysicsSystem(world));
         engine.addSystem(new CollisionSystem());
         engine.addSystem(new PlayerControlSystem(controller));
-        engine.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
+        //engine.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
 
         createPlayer();
         createWall(96, 2, 192, 1);
@@ -108,7 +111,10 @@ public class MAIN_GAME_LVL1 extends ScreenAdapter{
      
         // create the data for the components and add them to the components
         b2dbody.body = bodyFactory.makeBox(50, 50, 7, 16, BodyFactory.PLAYER, BodyType.DynamicBody);
+        //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
         b2dbody.setdimension(7, 16);
+        //Setzen der Playerstats Damage, Leben, Speed, Rüstung
+        player.setStats(10, 100, 500, 20);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
         position.position.set(0,0,0);
         texture.region = testplayer.findRegion("player1");

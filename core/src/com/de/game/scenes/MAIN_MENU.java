@@ -1,4 +1,4 @@
-package com.de.game;
+package com.de.game.scenes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.de.game.Main;
 
 public class MAIN_MENU extends ScreenAdapter{
 
