@@ -1,5 +1,6 @@
 package com.de.game;
 
+import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -25,15 +26,30 @@ public class MAIN_GAME_LVL1 extends ScreenAdapter{
     private float zeit;
     private float zeit2;
     private String fpsanzeige = "0";
+    private PooledEngine engine;
 
     public MAIN_GAME_LVL1 (Main game){
         this.game = game;
         controller = new KeyboardController();
+        world = new World(new Vector2(0,-10f), true);
+        world.setContactListener(new B2dContactListener());
+        bodyFactory = BodyFactory.getInstance(world);
+            
+        parent.assMan.queueAddSounds();
+        parent.assMan.manager.finishLoading();
+
+        controller = new KeyboardController();
         model = new LVL1_Model(controller);
         cam = new OrthographicCamera(192,108);
+
+
+
         debugRenderer = new Box2DDebugRenderer(true,true,true,true,true,true);
         sb = new SpriteBatch();
         sb.setProjectionMatrix(cam.combined);
+
+        engine = new PooledEngine();
+
 
         game.assetManager.queueAddImages();
         game.assetManager.manager.finishLoading();
