@@ -21,8 +21,18 @@ public class TextureComponent implements Component {
     public TextureRegion getRegion(Entity entity) {
         TypeComponent type = typecom.get(entity);
         if (type.getTypenumber() == TypeComponent.PLAYER){
-
-            region = atlas.findRegion("player1");
+            if(!controller.up && !controller.down && ! controller.left && !controller.right){
+                region = atlas.findRegion("player1");
+            }
+            if(controller.up){
+                region = null;
+            }
+            if(controller.down){
+            }
+            if(controller.left){
+            }
+            if(controller.right){
+            }
         }
         return region;
     }
