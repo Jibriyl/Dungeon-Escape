@@ -13,7 +13,6 @@ public class CollisionSystem  extends IteratingSystem {
 	 ComponentMapper<CollisionComponent> cm;
 	 ComponentMapper<PlayerComponent> pm;
 
-	@SuppressWarnings("unchecked")
 	public CollisionSystem() {
 		// only need to worry about player collisions
 		super(Family.all(CollisionComponent.class,PlayerComponent.class).get());

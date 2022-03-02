@@ -20,7 +20,7 @@ public class LVL_1 extends LVL_0{
         pm.createPlayer("test");
 
         //Gegner
-
+    
 
         //Scenery
         sm.createWall(96, 2, 192, 1);

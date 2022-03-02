@@ -15,7 +15,6 @@ public class AnimationSystem extends IteratingSystem {
     ComponentMapper<AnimationComponent> am;
     ComponentMapper<StateComponent> sm;
 
-    @SuppressWarnings("unchecked")
 	public AnimationSystem(){
         super(Family.all(TextureComponent.class,
                 AnimationComponent.class,

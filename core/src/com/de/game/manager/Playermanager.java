@@ -52,7 +52,7 @@ public class Playermanager {
         player.setStats(10, 100, 1000, 20);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
         position.position.set(0,0,0);
-        texture.region = testplayer.findRegion("player1");
+        texture.atlas = testplayer;
         type.type = TypeComponent.PLAYER;
         stateCom.set(StateComponent.STATE_NORMAL); 
         b2dbody.body.setUserData(entity);
