@@ -59,7 +59,6 @@ public class RenderingSystem extends SortedIteratingSystem {
 
     private Texture lvl1background;
 
-    @SuppressWarnings("unchecked")
 	public RenderingSystem(SpriteBatch batch) {
         // gets all entities with a TransofmComponent and TextureComponent
         super(Family.all(TransformComponent.class, TextureComponent.class).get(), new ZComparator());

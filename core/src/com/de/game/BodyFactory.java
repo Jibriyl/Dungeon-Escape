@@ -96,7 +96,7 @@ public class BodyFactory {
         // create a definition
         BodyDef boxBodyDef = new BodyDef();
         boxBodyDef.type = bodyType;
-        boxBodyDef.linearDamping = 4f;
+        boxBodyDef.linearDamping = 9f;
         boxBodyDef.position.x = posx;
         boxBodyDef.position.y = posy;
         boxBodyDef.fixedRotation = fixedRotation;

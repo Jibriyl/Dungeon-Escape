@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.de.game.BodyFactory;
 import com.de.game.Main;
+//Importieren den eigener Klassen
 import com.de.game.entity.components.B2dBodyComponent;
 import com.de.game.entity.components.CollisionComponent;
 import com.de.game.entity.components.PlayerComponent;
@@ -26,7 +27,13 @@ public class Playermanager {
         testplayer = game.assetManager.manager.get("Output/testchar.atlas");
     }
 
-    public void createbasicPlayer(){
+    public void createPlayer(String type){
+        if(type == "test"){
+            createbasicPlayer();
+        }
+    }
+
+    private void createbasicPlayer(){
         // Create the Entity and all the components that will go in the entity
         Entity entity = engine.createEntity();
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
@@ -42,7 +49,7 @@ public class Playermanager {
         //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
         b2dbody.setdimension(7, 16);
         //Setzen der Playerstats Damage, Leben, Speed, Rüstung
-        player.setStats(10, 100, 500, 20);
+        player.setStats(10, 100, 1000, 20);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
         position.position.set(0,0,0);
         texture.region = testplayer.findRegion("player1");
