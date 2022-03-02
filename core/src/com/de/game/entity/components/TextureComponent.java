@@ -5,33 +5,38 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.de.game.controller.KeyboardController;
 
 public class TextureComponent implements Component {
     public TextureAtlas atlas = null;
     public TextureRegion region = null;
     private ComponentMapper<TypeComponent> typecom;
-    private KeyboardController controller;
+    private ComponentMapper<StateComponent> statecom;
     
     public TextureComponent(){
         typecom = ComponentMapper.getFor(TypeComponent.class);
-        controller = new KeyboardController();
+        statecom = ComponentMapper.getFor(StateComponent.class);
     }
 
     public TextureRegion getRegion(Entity entity) {
         TypeComponent type = typecom.get(entity);
+        StateComponent state = statecom.get(entity);
         if (type.getTypenumber() == TypeComponent.PLAYER){
-            if(!controller.up && !controller.down && ! controller.left && !controller.right){
-                region = atlas.findRegion("player1");
+            if(state.get() == StateComponent.STATE_NORMAL){
+                region = atlas.findRegion("standing");
             }
-            if(controller.up){
-                region = null;
+            if(state.get() == StateComponent.STATE_MOVING_UP){
+                float time = 0;
+                region = atlas.findRegion("back");
             }
-            if(controller.down){
+            if(state.get() == StateComponent.STATE_MOVING_DOWN){
+                float time =  0;
+                region = atlas.findRegion("standing");
             }
-            if(controller.left){
+            if(state.get() == StateComponent.STATE_MOVING_LEFT){
+                region = atlas.findRegion("standing_left");
             }
-            if(controller.right){
+            if(state.get() == StateComponent.STATE_MOVING_RIGHT){
+                region = atlas.findRegion("standing_right");
             }
         }
         return region;

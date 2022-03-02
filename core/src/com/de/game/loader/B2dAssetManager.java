@@ -9,7 +9,7 @@ public class B2dAssetManager {
 	
 	// Textures
 	public final String lvl1background = "Input/game/lvl1background.png";
-    public final String player = "Output/testchar.atlas";
+    public final String player = "Output/char1.atlas";
 
     public void queueAddImages(){
         manager.load(lvl1background, Texture.class);

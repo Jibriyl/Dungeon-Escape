@@ -29,28 +29,28 @@ public class PlayerControlSystem extends IteratingSystem{
 		B2dBodyComponent b2body = bodm.get(entity);
 		StateComponent state = sm.get(entity);
 		PlayerComponent player = pm.get(entity);
-		
-		if(b2body.body.getLinearVelocity().y == 0 && b2body.body.getLinearVelocity().x == 0){
-			if(state.get() == StateComponent.STATE_IN_DASH){
-				state.set(StateComponent.STATE_NORMAL);
-			}
-			if(b2body.body.getLinearVelocity().x != 0 || b2body.body.getLinearVelocity().y != 0){
-				state.set(StateComponent.STATE_MOVING);
-			}
+
+		if(b2body.body.getLinearVelocity().x <= 0.5f && b2body.body.getLinearVelocity().y <= 0.5f){
+			state.set(StateComponent.STATE_NORMAL);
 		}
 		
 
         if(controller.up){
 			b2body.body.applyForceToCenter(0, player.getSpeed(),true);
+			state.set(StateComponent.STATE_MOVING_UP);
+
 		}
         if(controller.down){
 			b2body.body.applyForceToCenter(0, -player.getSpeed(),true);
+			state.set(StateComponent.STATE_MOVING_DOWN);
 		}
         if(controller.left){
-			b2body.body.applyForceToCenter(-player.getSpeed(), 0,true);;
+			b2body.body.applyForceToCenter(-player.getSpeed(), 0,true);
+			state.set(StateComponent.STATE_MOVING_LEFT);
 		}
 		if(controller.right){
 			b2body.body.applyForceToCenter(player.getSpeed(), 0,true);
+			state.set(StateComponent.STATE_MOVING_RIGHT);
 		}
 	}
 }
