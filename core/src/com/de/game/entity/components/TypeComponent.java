@@ -12,4 +12,8 @@ public class TypeComponent implements Component {
 	
 	public int type = OTHER;
 
+	public int getTypenumber() {
+		return type;
+	}
 }
+
