@@ -34,7 +34,6 @@ public class PlayerControlSystem extends IteratingSystem{
 			state.set(StateComponent.STATE_NORMAL);
 		}
 		
-
         if(controller.up){
 			b2body.body.applyForceToCenter(0, player.getSpeed(),true);
 			state.set(StateComponent.STATE_MOVING_UP);

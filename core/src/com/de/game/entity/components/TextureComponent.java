@@ -25,11 +25,9 @@ public class TextureComponent implements Component {
                 region = atlas.findRegion("standing");
             }
             if(state.get() == StateComponent.STATE_MOVING_UP){
-                float time = 0;
                 region = atlas.findRegion("back");
             }
             if(state.get() == StateComponent.STATE_MOVING_DOWN){
-                float time =  0;
                 region = atlas.findRegion("standing");
             }
             if(state.get() == StateComponent.STATE_MOVING_LEFT){
