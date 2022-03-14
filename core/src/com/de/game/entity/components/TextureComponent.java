@@ -16,28 +16,5 @@ public class TextureComponent implements Component {
         typecom = ComponentMapper.getFor(TypeComponent.class);
         statecom = ComponentMapper.getFor(StateComponent.class);
     }
-
-    public TextureRegion getRegion(Entity entity) {
-        TypeComponent type = typecom.get(entity);
-        StateComponent state = statecom.get(entity);
-        if (type.getTypenumber() == TypeComponent.PLAYER){
-            if(state.get() == StateComponent.STATE_NORMAL){
-                region = atlas.findRegion("standing");
-            }
-            if(state.get() == StateComponent.STATE_MOVING_UP){
-                region = atlas.findRegion("back");
-            }
-            if(state.get() == StateComponent.STATE_MOVING_DOWN){
-                region = atlas.findRegion("standing");
-            }
-            if(state.get() == StateComponent.STATE_MOVING_LEFT){
-                region = atlas.findRegion("standing_left");
-            }
-            if(state.get() == StateComponent.STATE_MOVING_RIGHT){
-                region = atlas.findRegion("standing_right");
-            }
-        }
-        return region;
-    }
 }
 

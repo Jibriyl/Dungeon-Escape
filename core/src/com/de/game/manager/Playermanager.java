@@ -24,7 +24,7 @@ public class Playermanager {
     public Playermanager(BodyFactory bodyFactory, PooledEngine engine, Main game){
         this.engine = engine;
         this.bodyFactory = bodyFactory;
-        testplayer = game.assetManager.manager.get("Output/char1.atlas");
+        testplayer = game.assetManager.manager.get("Output/joshuachar1.atlas");
     }
 
     public void createPlayer(String type){

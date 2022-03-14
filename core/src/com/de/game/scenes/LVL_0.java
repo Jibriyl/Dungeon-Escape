@@ -13,6 +13,7 @@ import com.de.game.BodyFactory;
 import com.de.game.Main;
 //Eigene Klassen importieren
 import com.de.game.controller.KeyboardController;
+import com.de.game.entity.systems.AnimationSystem;
 import com.de.game.entity.systems.CollisionSystem;
 import com.de.game.entity.systems.PhysicsDebugSystem;
 import com.de.game.entity.systems.PhysicsSystem;
@@ -60,14 +61,15 @@ public class LVL_0 extends ScreenAdapter{
         em = new Enemymanager();
         sm = new Scenerymanager(bodyFactory, engine, game);
 
+
+        engine.addSystem(new PlayerControlSystem(controller));
+        engine.addSystem(new AnimationSystem());
         engine.addSystem(renderingSystem);
         engine.addSystem(new PhysicsSystem(world));
         engine.addSystem(new CollisionSystem());
-        engine.addSystem(new PlayerControlSystem(controller));
         if(debug){
             engine.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
         }
-
     }
 
     @Override

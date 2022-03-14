@@ -1,0 +1,89 @@
+Joshuachar1.png
+size: 980, 163
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+back_standing
+  rotate: false
+  xy: 0, 0
+  size: 80, 163
+  orig: 80, 163
+  offset: 0, 0
+  index: -1
+back_waltking_a
+  rotate: false
+  xy: 80, 0
+  size: 80, 163
+  orig: 80, 163
+  offset: 0, 0
+  index: -1
+back_waltking_b
+  rotate: false
+  xy: 160, 0
+  size: 80, 163
+  orig: 80, 163
+  offset: 0, 0
+  index: -1
+front_standing
+  rotate: false
+  xy: 240, 0
+  size: 80, 163
+  orig: 80, 163
+  offset: 0, 0
+  index: -1
+front_waltking_a
+  rotate: false
+  xy: 320, 0
+  size: 80, 163
+  orig: 80, 163
+  offset: 0, 0
+  index: -1
+front_waltking_b
+  rotate: false
+  xy: 400, 0
+  size: 80, 163
+  orig: 80, 163
+  offset: 0, 0
+  index: -1
+left_standing
+  rotate: false
+  xy: 480, 0
+  size: 80, 163
+  orig: 80, 163
+  offset: 0, 0
+  index: -1
+left_waltking_a
+  rotate: false
+  xy: 560, 0
+  size: 85, 163
+  orig: 85, 163
+  offset: 0, 0
+  index: -1
+left_waltking_b
+  rotate: false
+  xy: 645, 0
+  size: 85, 163
+  orig: 85, 163
+  offset: 0, 0
+  index: -1
+right_standing
+  rotate: false
+  xy: 730, 0
+  size: 80, 163
+  orig: 80, 163
+  offset: 0, 0
+  index: -1
+right_waltking_a
+  rotate: false
+  xy: 810, 0
+  size: 85, 163
+  orig: 85, 163
+  offset: 0, 0
+  index: -1
+right_waltking_b
+  rotate: false
+  xy: 895, 0
+  size: 85, 163
+  orig: 85, 163
+  offset: 0, 0
+  index: -1
