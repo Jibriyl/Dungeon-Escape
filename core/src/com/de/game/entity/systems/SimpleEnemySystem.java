@@ -1,31 +1,55 @@
 package com.de.game.entity.systems;
 
+import javax.swing.TransferHandler;
+
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.gdx.math.Vector2;
 import com.de.game.entity.components.B2dBodyComponent;
 import com.de.game.entity.components.PlayerComponent;
 import com.de.game.entity.components.StateComponent;
+import com.de.game.entity.components.TransformComponent;
+import com.de.game.entity.components.TypeComponent;
 
 public class SimpleEnemySystem extends IteratingSystem{
 
-    private ComponentMapper<PlayerComponent> pm;
-    private ComponentMapper<B2dBodyComponent> bodm;
-    private ComponentMapper<StateComponent> sm;
+  private ComponentMapper<PlayerComponent> pm;
+  private ComponentMapper<B2dBodyComponent> bodm;
+  private ComponentMapper<StateComponent> sm;
+  private	ComponentMapper<TypeComponent> tm;
+  private ComponentMapper<TransformComponent> tfm;
+  private Vector2 playerpos;
 
-    public SimpleEnemySystem(Family family){
-		super(Family.all(PlayerComponent.class).get());
-        pm = ComponentMapper.getFor(PlayerComponent.class);
-		bodm = ComponentMapper.getFor(B2dBodyComponent.class);
-		sm = ComponentMapper.getFor(StateComponent.class);
+  public SimpleEnemySystem(){
+    super(Family.all(PlayerComponent.class).get());
+        
+    pm = ComponentMapper.getFor(PlayerComponent.class);
+    bodm = ComponentMapper.getFor(B2dBodyComponent.class);
+    sm = ComponentMapper.getFor(StateComponent.class);
+    tm = ComponentMapper.getFor(TypeComponent.class);
+    tfm = ComponentMapper.getFor(TransformComponent.class);
+    playerpos = new Vector2(0.0f, 0.0f);
+  }
+
+  @Override
+  protected void processEntity(Entity entity, float deltaTime) {
+    TransformComponent position = tfm.get(entity);
+
+    TypeComponent type = tm.get(entity);
+    if(type.type == TypeComponent.ENEMY){
+      B2dBodyComponent b2body = bodm.get(entity);
+      StateComponent state = sm.get(entity);
+      PlayerComponent player = pm.get(entity);
+      Vector2 difference = new Vector2(playerpos.x - position.position.x, playerpos.y - position.position.y);
+      
+      b2body.body.applyForceToCenter(difference.x * player.getSpeed(), difference.y * player.getSpeed(),true);
     }
 
-    @Override
-    protected void processEntity(Entity entity, float deltaTime) {
-        B2dBodyComponent b2body = bodm.get(entity);
-		StateComponent state = sm.get(entity);
-		PlayerComponent player = pm.get(entity);
+    if(type.type == TypeComponent.PLAYER){
+      playerpos = new Vector2(position.position.x, position.position.y);
     }
+  }
     
 }

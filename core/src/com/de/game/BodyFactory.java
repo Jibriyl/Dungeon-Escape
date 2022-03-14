@@ -71,11 +71,11 @@ public class BodyFactory {
         return fixtureDef;
     }
 
-    public Body makeCircle(float posx, float posy, float diameter, int material, BodyType bodyType, boolean fixedRotation){
+    public Body makeCircle(float posx, float posy, float diameter, int material, BodyType bodyType, boolean fixedRotation, float damp){
         // create a definition
         BodyDef boxBodyDef = new BodyDef();
         boxBodyDef.type = bodyType;
-        boxBodyDef.linearDamping = 0.5f;
+        boxBodyDef.linearDamping = damp;
         boxBodyDef.position.x = posx;
         boxBodyDef.position.y = posy;
         boxBodyDef.fixedRotation = fixedRotation;
@@ -88,8 +88,8 @@ public class BodyFactory {
         circleShape.dispose();
         return boxBody;
     }
-    public Body makeCircle(float posx, float posy, float radius, int material){
-        return makeCircle( posx,  posy,  radius,  material,  BodyType.DynamicBody,  false);
+    public Body makeCircle(float posx, float posy, float diameter, int material , float damp){
+        return makeCircle( posx,  posy,  diameter,  material,  BodyType.DynamicBody, true, damp);
     }
 
     public Body makeBox(float posx, float posy, float lenght, float height, int material, BodyType bodyType, boolean fixedRotation){

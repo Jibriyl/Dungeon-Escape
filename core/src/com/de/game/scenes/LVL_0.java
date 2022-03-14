@@ -19,6 +19,7 @@ import com.de.game.entity.systems.PhysicsDebugSystem;
 import com.de.game.entity.systems.PhysicsSystem;
 import com.de.game.entity.systems.PlayerControlSystem;
 import com.de.game.entity.systems.RenderingSystem;
+import com.de.game.entity.systems.SimpleEnemySystem;
 import com.de.game.manager.Enemymanager;
 import com.de.game.manager.Playermanager;
 import com.de.game.manager.Scenerymanager;
@@ -58,7 +59,7 @@ public class LVL_0 extends ScreenAdapter{
         engine = new PooledEngine();
 
         pm = new Playermanager(bodyFactory, engine, game);
-        em = new Enemymanager();
+        em = new Enemymanager(bodyFactory, engine, game);
         sm = new Scenerymanager(bodyFactory, engine, game);
 
 
@@ -67,6 +68,7 @@ public class LVL_0 extends ScreenAdapter{
         engine.addSystem(renderingSystem);
         engine.addSystem(new PhysicsSystem(world));
         engine.addSystem(new CollisionSystem());
+        engine.addSystem(new SimpleEnemySystem());
         if(debug){
             engine.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
         }
