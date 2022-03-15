@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.de.game.loader.B2dAssetManager;
+import com.de.game.scenes.GAME_OVER;
 import com.de.game.scenes.LVL_1;
 
 public class Main extends Game {
@@ -30,5 +31,11 @@ public class Main extends Game {
     public void dispose () {
         //Löschen der Objekte wenn sie nicht mehr benötigt werden
         batch.dispose();
+    }
+
+    public void screenset(String screen){
+        if (screen == "GAME_OVER"){
+            setScreen(new GAME_OVER(this));
+        }
     }
 }

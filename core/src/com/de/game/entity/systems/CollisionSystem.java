@@ -20,8 +20,7 @@ public class CollisionSystem  extends IteratingSystem {
 	 ComponentMapper<TransformComponent> trm;
 
 	public CollisionSystem() {
-		// only need to worry about player collisions
-		super(Family.all(CollisionComponent.class,StatComponent.class).get());
+		super(Family.all(CollisionComponent.class,StatComponent.class,TypeComponent.class,B2dBodyComponent.class,TransformComponent.class).get());
 		
 		 cm = ComponentMapper.getFor(CollisionComponent.class);
 		 sm = ComponentMapper.getFor(StatComponent.class);
@@ -33,7 +32,6 @@ public class CollisionSystem  extends IteratingSystem {
 
 	@Override
 	protected void processEntity(Entity entity, float deltaTime) {
-		// get player collision component
 		CollisionComponent cc = cm.get(entity);
 		TypeComponent thistype = tm.get(entity);
 		StatComponent stats = sm.get(entity);
@@ -57,6 +55,7 @@ public class CollisionSystem  extends IteratingSystem {
 						spielerbody.body.applyForceToCenter(difference.x * 3000, difference.y * 3000,true);
 						//Fügt dem Spieler den schaden zu der im gegner als schaden gespeichert ist
 						stats.nehmeschaden(gegnerstats.getDamage());
+						//gegnerstats.nehmeschaden(50);
 						System.out.println("player hit enemy" + stats.getLeben());
 						break;
 					case TypeComponent.OTHER:

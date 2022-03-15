@@ -10,7 +10,7 @@ public class ZComparator implements Comparator<Entity> {
  
     //ZComparator ist für die einordnung in ebenen zuständig, die Z achse des Vector3 des Entitys wird benutzt um die reinfolge fest zu legen
     public ZComparator(){
-        cmTrans= ComponentMapper.getFor(TransformComponent.class);
+        cmTrans = ComponentMapper.getFor(TransformComponent.class);
     }
  
     @Override

@@ -1,7 +1,5 @@
 package com.de.game.entity.systems;
 
-import javax.swing.TransferHandler;
-
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;

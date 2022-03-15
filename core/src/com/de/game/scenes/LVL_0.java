@@ -15,6 +15,7 @@ import com.de.game.Main;
 import com.de.game.controller.KeyboardController;
 import com.de.game.entity.systems.AnimationSystem;
 import com.de.game.entity.systems.CollisionSystem;
+import com.de.game.entity.systems.LifeSystem;
 import com.de.game.entity.systems.PhysicsDebugSystem;
 import com.de.game.entity.systems.PhysicsSystem;
 import com.de.game.entity.systems.PlayerControlSystem;
@@ -65,10 +66,11 @@ public class LVL_0 extends ScreenAdapter{
 
         engine.addSystem(new PlayerControlSystem(controller));
         engine.addSystem(new AnimationSystem());
-        engine.addSystem(renderingSystem);
         engine.addSystem(new PhysicsSystem(world));
         engine.addSystem(new CollisionSystem());
         engine.addSystem(new SimpleEnemySystem());
+        engine.addSystem(new LifeSystem(world, game));
+        engine.addSystem(renderingSystem);
         if(debug){
             engine.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
         }

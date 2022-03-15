@@ -19,4 +19,7 @@ public class B2dBodyComponent implements Component{
 	public float getHeight(){
 		return this.height;
 	}
+	public void remove(){
+		body = null;
+	}
 }

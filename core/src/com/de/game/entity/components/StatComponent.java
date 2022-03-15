@@ -25,14 +25,8 @@ public class StatComponent implements Component{
     public int getSpeed() {
         return speed;
     }
-    public boolean nehmeschaden(int schaden){
+    public void nehmeschaden(int schaden){
         leben -= schaden;
-        if (leben <= 0){
-            return false;
-        }
-        else{
-            return true;
-        }
     }
 
 }
