@@ -2,7 +2,7 @@ package com.de.game.entity.components;
 
 import com.badlogic.ashley.core.Component;
 
-public class PlayerComponent implements Component{
+public class StatComponent implements Component{
     private int damage;
     private int leben;
     private int speed;

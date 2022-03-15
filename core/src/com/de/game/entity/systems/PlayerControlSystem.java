@@ -1,7 +1,7 @@
 package com.de.game.entity.systems;
 
 import com.de.game.controller.KeyboardController;
-import com.de.game.entity.components.PlayerComponent;
+import com.de.game.entity.components.StatComponent;
 import com.de.game.entity.components.B2dBodyComponent;
 import com.de.game.entity.components.StateComponent;
 import com.de.game.entity.components.TypeComponent;
@@ -12,16 +12,16 @@ import com.badlogic.ashley.systems.IteratingSystem;
 
 public class PlayerControlSystem extends IteratingSystem{
 
-	ComponentMapper<PlayerComponent> pm;
+	ComponentMapper<StatComponent> pm;
 	ComponentMapper<B2dBodyComponent> bodm;
 	ComponentMapper<StateComponent> sm;
 	ComponentMapper<TypeComponent> tm;
 	KeyboardController controller;
 	
 	public PlayerControlSystem(KeyboardController keyCon) {
-		super(Family.all(PlayerComponent.class).get());
+		super(Family.all(StatComponent.class).get());
 		controller = keyCon;
-		pm = ComponentMapper.getFor(PlayerComponent.class);
+		pm = ComponentMapper.getFor(StatComponent.class);
 		bodm = ComponentMapper.getFor(B2dBodyComponent.class);
 		sm = ComponentMapper.getFor(StateComponent.class);
 		tm = ComponentMapper.getFor(TypeComponent.class);
@@ -33,7 +33,7 @@ public class PlayerControlSystem extends IteratingSystem{
 		if (type.type == TypeComponent.PLAYER){
 			B2dBodyComponent b2body = bodm.get(entity);
 			StateComponent state = sm.get(entity);
-			PlayerComponent player = pm.get(entity);
+			StatComponent player = pm.get(entity);
 
 			if(b2body.body.getLinearVelocity().x <= 0.5f && b2body.body.getLinearVelocity().y <= 0.5f){
 				state.set(StateComponent.STATE_NORMAL);

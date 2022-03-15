@@ -9,7 +9,7 @@ import com.de.game.Main;
 //Importieren den eigener Klassen
 import com.de.game.entity.components.B2dBodyComponent;
 import com.de.game.entity.components.CollisionComponent;
-import com.de.game.entity.components.PlayerComponent;
+import com.de.game.entity.components.StatComponent;
 import com.de.game.entity.components.StateComponent;
 import com.de.game.entity.components.TextureComponent;
 import com.de.game.entity.components.TransformComponent;
@@ -33,7 +33,7 @@ public class Enemymanager {
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
         TransformComponent position = engine.createComponent(TransformComponent.class);
         TextureComponent texture = engine.createComponent(TextureComponent.class);
-        PlayerComponent player = engine.createComponent(PlayerComponent.class);
+        StatComponent player = engine.createComponent(StatComponent.class);
         CollisionComponent colComp = engine.createComponent(CollisionComponent.class);
         TypeComponent type = engine.createComponent(TypeComponent.class);
         StateComponent stateCom = engine.createComponent(StateComponent.class);

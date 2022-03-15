@@ -8,14 +8,14 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.Vector2;
 import com.de.game.entity.components.B2dBodyComponent;
-import com.de.game.entity.components.PlayerComponent;
+import com.de.game.entity.components.StatComponent;
 import com.de.game.entity.components.StateComponent;
 import com.de.game.entity.components.TransformComponent;
 import com.de.game.entity.components.TypeComponent;
 
 public class SimpleEnemySystem extends IteratingSystem{
 
-  private ComponentMapper<PlayerComponent> pm;
+  private ComponentMapper<StatComponent> pm;
   private ComponentMapper<B2dBodyComponent> bodm;
   private ComponentMapper<StateComponent> sm;
   private	ComponentMapper<TypeComponent> tm;
@@ -23,9 +23,9 @@ public class SimpleEnemySystem extends IteratingSystem{
   private Vector2 playerpos;
 
   public SimpleEnemySystem(){
-    super(Family.all(PlayerComponent.class).get());
+    super(Family.all(StatComponent.class).get());
         
-    pm = ComponentMapper.getFor(PlayerComponent.class);
+    pm = ComponentMapper.getFor(StatComponent.class);
     bodm = ComponentMapper.getFor(B2dBodyComponent.class);
     sm = ComponentMapper.getFor(StateComponent.class);
     tm = ComponentMapper.getFor(TypeComponent.class);
@@ -41,7 +41,7 @@ public class SimpleEnemySystem extends IteratingSystem{
     if(type.type == TypeComponent.ENEMY){
       B2dBodyComponent b2body = bodm.get(entity);
       StateComponent state = sm.get(entity);
-      PlayerComponent player = pm.get(entity);
+      StatComponent player = pm.get(entity);
       Vector2 difference = new Vector2(playerpos.x - position.position.x, playerpos.y - position.position.y);
       
       b2body.body.applyForceToCenter(difference.x * player.getSpeed(), difference.y * player.getSpeed(),true);
