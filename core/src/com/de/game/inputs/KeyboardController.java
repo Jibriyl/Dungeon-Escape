@@ -1,4 +1,4 @@
-package com.de.game.controller;
+package com.de.game.inputs;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;

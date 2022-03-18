@@ -1,4 +1,4 @@
-package com.de.game.entity.systems;
+package com.de.game.controller;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
@@ -11,7 +11,7 @@ import com.de.game.entity.components.StateComponent;
 import com.de.game.entity.components.TransformComponent;
 import com.de.game.entity.components.TypeComponent;
 
-public class SimpleEnemySystem extends IteratingSystem{
+public class SimpleEnemyController extends IteratingSystem{
 
   private ComponentMapper<StatComponent> pm;
   private ComponentMapper<B2dBodyComponent> bodm;
@@ -20,7 +20,7 @@ public class SimpleEnemySystem extends IteratingSystem{
   private ComponentMapper<TransformComponent> tfm;
   private Vector2 playerpos;
 
-  public SimpleEnemySystem(){
+  public SimpleEnemyController(){
     super(Family.all(StatComponent.class).get());
         
     pm = ComponentMapper.getFor(StatComponent.class);

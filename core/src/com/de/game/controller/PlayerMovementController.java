@@ -1,16 +1,16 @@
-package com.de.game.entity.systems;
+package com.de.game.controller;
 
-import com.de.game.controller.KeyboardController;
 import com.de.game.entity.components.StatComponent;
 import com.de.game.entity.components.B2dBodyComponent;
 import com.de.game.entity.components.StateComponent;
 import com.de.game.entity.components.TypeComponent;
+import com.de.game.inputs.KeyboardController;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 
-public class PlayerControlSystem extends IteratingSystem{
+public class PlayerMovementController extends IteratingSystem{
 
 	ComponentMapper<StatComponent> pm;
 	ComponentMapper<B2dBodyComponent> bodm;
@@ -18,8 +18,8 @@ public class PlayerControlSystem extends IteratingSystem{
 	ComponentMapper<TypeComponent> tm;
 	KeyboardController controller;
 	
-	public PlayerControlSystem(KeyboardController keyCon) {
-		super(Family.all(StatComponent.class).get());
+	public PlayerMovementController(KeyboardController keyCon) {
+		super(Family.all().get());
 		controller = keyCon;
 		pm = ComponentMapper.getFor(StatComponent.class);
 		bodm = ComponentMapper.getFor(B2dBodyComponent.class);
@@ -60,7 +60,5 @@ public class PlayerControlSystem extends IteratingSystem{
 				state.setLaststate("RIGHT");
 			}
 		}
-
-
 	}
 }

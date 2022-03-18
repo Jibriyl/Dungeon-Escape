@@ -11,17 +11,16 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.de.game.B2dContactListener;
 import com.de.game.BodyFactory;
 import com.de.game.Main;
-//Eigene Klassen importieren
-import com.de.game.controller.KeyboardController;
+import com.de.game.controller.PlayerMovementController;
+import com.de.game.controller.BaseAbilityController;
+import com.de.game.controller.SimpleEnemyController;
 import com.de.game.entity.systems.AnimationSystem;
 import com.de.game.entity.systems.CollisionSystem;
 import com.de.game.entity.systems.LifeSystem;
 import com.de.game.entity.systems.PhysicsDebugSystem;
 import com.de.game.entity.systems.PhysicsSystem;
-import com.de.game.entity.systems.PlayerControlSystem;
 import com.de.game.entity.systems.RenderingSystem;
-import com.de.game.entity.systems.SimpleAbilitySystem;
-import com.de.game.entity.systems.SimpleEnemySystem;
+import com.de.game.inputs.KeyboardController;
 import com.de.game.manager.Enemymanager;
 import com.de.game.manager.Playermanager;
 import com.de.game.manager.Scenerymanager;
@@ -65,17 +64,17 @@ public class LVL_0 extends ScreenAdapter{
         sm = new Scenerymanager(bodyFactory, engine, game);
 
 
-        engine.addSystem(new PlayerControlSystem(controller));
+        engine.addSystem(new PlayerMovementController(controller));
         engine.addSystem(new AnimationSystem());
         engine.addSystem(new PhysicsSystem(world));
         engine.addSystem(new CollisionSystem());
         engine.addSystem(renderingSystem);
-        engine.addSystem(new SimpleEnemySystem());
+        engine.addSystem(new SimpleEnemyController());
         engine.addSystem(new LifeSystem(world, game, engine));
         if(debug){
             engine.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
         }
-        engine.addSystem(new SimpleAbilitySystem(world, engine, bodyFactory, controller));
+        engine.addSystem(new BaseAbilityController(world, engine, bodyFactory, controller));
     }
 
     @Override

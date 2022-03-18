@@ -5,14 +5,17 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.de.game.loader.B2dAssetManager;
+import com.de.game.scenes.CHARACTER_SELECT;
 import com.de.game.scenes.GAME_OVER;
 import com.de.game.scenes.LVL_1;
+import com.de.game.scenes.MAIN_MENU;
 
 public class Main extends Game {
     public SpriteBatch batch;
     public Texture img;
 	public BitmapFont font;
     public B2dAssetManager assetManager = new B2dAssetManager();
+
 
 
 
@@ -23,9 +26,8 @@ public class Main extends Game {
         font = new BitmapFont();
         
         //Setzen des Start Screens
-        //setScreen(new MAIN_MENU(this));
-		setScreen(new LVL_1(this));
-        }
+        screenset("LVL_1");        
+    }
 
     @Override
     public void dispose () {
@@ -34,8 +36,17 @@ public class Main extends Game {
     }
 
     public void screenset(String screen){
-        if (screen == "GAME_OVER"){
+        if(screen == "LVL_1"){
+            setScreen(new LVL_1(this));
+        }
+        else if(screen == "MAIN_MENU"){
+            setScreen(new MAIN_MENU(this));
+        }
+        else if(screen == "GAME_OVER"){
             setScreen(new GAME_OVER(this));
+        }
+        else if(screen == "CHARACTER_SELECT"){
+            setScreen(new CHARACTER_SELECT(this));
         }
     }
 }
