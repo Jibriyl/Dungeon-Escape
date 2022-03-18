@@ -33,7 +33,7 @@ public class AnimationSystem extends IteratingSystem {
         StateComponent state = sm.get(entity);
         TextureComponent texture = tm.get(entity);
 
-        if(state.get() == StateComponent.STATE_MOVING_DOWN){
+        if(state.getstate() == StateComponent.STATE_MOVING_DOWN){
             if(t1 <= 0.125){
                 t2 = 0;
                 t3 = 0;
@@ -53,7 +53,7 @@ public class AnimationSystem extends IteratingSystem {
                 t1 = 0;
             }
         }
-        else if(state.get() == StateComponent.STATE_MOVING_UP){
+        else if(state.getstate() == StateComponent.STATE_MOVING_UP){
             if(t2 <= 0.125){
                 t1 = 0;
                 t3 = 0;
@@ -73,7 +73,7 @@ public class AnimationSystem extends IteratingSystem {
                 t2 = 0;
             }
         }
-        else if(state.get() == StateComponent.STATE_MOVING_LEFT){
+        else if(state.getstate() == StateComponent.STATE_MOVING_LEFT){
             if(t3 <= 0.125){
                 t1 = 0;
                 t2 = 0;
@@ -93,7 +93,7 @@ public class AnimationSystem extends IteratingSystem {
                 t3 = 0;
             }
         }
-        else if(state.get() == StateComponent.STATE_MOVING_RIGHT){
+        else if(state.getstate() == StateComponent.STATE_MOVING_RIGHT){
             if(t4 <= 0.125){
                 t1 = 0;
                 t2 = 0;
@@ -113,8 +113,19 @@ public class AnimationSystem extends IteratingSystem {
                 t4 = 0;
             }
         }
-        else if(state.get() == StateComponent.STATE_NORMAL){
-            texture.region = texture.atlas.findRegion("front_standing");
+        else if(state.getstate() == StateComponent.STATE_NORMAL){
+            if (state.getLaststate() == "DOWN"){
+                texture.region = texture.atlas.findRegion("front_standing");
+            }
+            if (state.getLaststate() == "UP"){
+                texture.region = texture.atlas.findRegion("back_standing");
+            }
+            if (state.getLaststate() == "LEFT"){
+                texture.region = texture.atlas.findRegion("left_standing");
+            }
+            if (state.getLaststate() == "RIGHT"){
+                texture.region = texture.atlas.findRegion("right_standing");
+            }
         }
 
     }

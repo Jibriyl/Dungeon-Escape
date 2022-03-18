@@ -30,7 +30,7 @@ public class GAME_OVER extends ScreenAdapter{
             game.batch.begin();
             ScreenUtils.clear(0, 0, 0, 1);
     
-            //Createn des Stage um auf User-Inputs zu testen
+            //Createn der Stage um auf User-Inputs zu testen
             stage = new Stage(new ScreenViewport());
             Gdx.input.setInputProcessor(stage);
     

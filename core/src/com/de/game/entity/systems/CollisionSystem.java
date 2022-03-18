@@ -39,42 +39,39 @@ public class CollisionSystem  extends IteratingSystem {
 		TransformComponent playerposi = trm.get(entity);
 
 		Entity collidedEntity = cc.collisionEntity;
+
 		//Wenn der Spieler mit einer anderen Entity Kollidiert
 		if(thistype.type == TypeComponent.PLAYER){
 			if(collidedEntity != null){
 				TypeComponent type = collidedEntity.getComponent(TypeComponent.class);
-				if(type != null){
-					switch(type.type){
-					//Spieler berührt einen Gegner
-					case TypeComponent.ENEMY:
-						StatComponent gegnerstats = collidedEntity.getComponent(StatComponent.class);
-						TransformComponent gegnerpos = collidedEntity.getComponent(TransformComponent.class);
-						//Berechnen der richtung in der der gegner zum spieler ist
-						Vector2 difference = new Vector2(playerposi.position.x - gegnerpos.position.x, playerposi.position.y - gegnerpos.position.y);
-						//Einfügen des Rückstoßes entgegengesetzt der richtung dem Gegner
-						spielerbody.body.applyForceToCenter(difference.x * 3000, difference.y * 3000,true);
-						//Fügt dem Spieler den schaden zu der im gegner als schaden gespeichert ist
-						stats.nehmeschaden(gegnerstats.getDamage());
-						//gegnerstats.nehmeschaden(50);
-						System.out.println("player hit enemy" + stats.getLeben());
-						break;
-					case TypeComponent.OTHER:
-						//do player hit other thing
-						System.out.println("player hit other");
-						break; //technically this isn't needed				
-					}
-					cc.collisionEntity = null; // collision handled reset component
+				//Spieler berührt einen Gegner
+				if(type.type == TypeComponent.ENEMY){
+					StatComponent gegnerstats = collidedEntity.getComponent(StatComponent.class);
+					TransformComponent gegnerpos = collidedEntity.getComponent(TransformComponent.class);
+					//Berechnen der richtung in der der gegner zum spieler ist
+					Vector2 difference = new Vector2(playerposi.position.x - gegnerpos.position.x, playerposi.position.y - gegnerpos.position.y);
+					//Einfügen des Rückstoßes entgegengesetzt der richtung dem Gegner
+					spielerbody.body.applyForceToCenter(difference.x * 3000, difference.y * 3000,true);
+					//Fügt dem Spieler den schaden zu der im gegner als schaden gespeichert ist
+					stats.nehmeschaden(gegnerstats.getDamage());
+					System.out.println("player hit enemy" + stats.getLeben());
 				}
+				cc.collisionEntity = null; // collision handled reset component
 			}
 		}
 		//Wenn ein gegner mit einer entity Kollidiert
-		if(thistype.type == TypeComponent.ENEMY){
-
+		if(thistype.type == TypeComponent.ATTACK){
+			if(collidedEntity != null){
+				TypeComponent type = collidedEntity.getComponent(TypeComponent.class);
+				//Wenn ein gegner von einem Angriff des Spielers wwwwwwwwwgetroffen wird
+				if(type.type == TypeComponent.ENEMY){
+					StatComponent gegnerstats = collidedEntity.getComponent(StatComponent.class);
+					//Berechnen der richtung in der der gegner zum spieler ist
+					System.out.println("Attack hit Enemy");
+					gegnerstats.nehmeschaden(stats.getDamage());
+				}
+				cc.collisionEntity = null; // collision handled reset component
+			}
 		}
-
-
-
-		
 	}
-
 }

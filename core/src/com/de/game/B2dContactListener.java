@@ -24,10 +24,14 @@ public class B2dContactListener implements ContactListener {
 		if(fa.getBody().getUserData() instanceof Entity){
 			Entity ent = (Entity) fa.getBody().getUserData();
 			entityCollision(ent,fb);
+			//System.out.println("tsst");
+
 			return;
 		}else if(fb.getBody().getUserData() instanceof Entity){
 			Entity ent = (Entity) fb.getBody().getUserData();
 			entityCollision(ent,fa);
+			//System.out.println("tsst2");
+
 			return;
 		}
 	}

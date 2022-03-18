@@ -1,6 +1,7 @@
 package com.de.game.entity.systems;
 
 import com.badlogic.ashley.core.ComponentMapper;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
@@ -9,7 +10,6 @@ import com.de.game.Main;
 import com.de.game.entity.components.B2dBodyComponent;
 import com.de.game.entity.components.StatComponent;
 import com.de.game.entity.components.TypeComponent;
-import com.de.game.scenes.GAME_OVER;
 
 public class LifeSystem extends IteratingSystem{
 
@@ -18,11 +18,12 @@ public class LifeSystem extends IteratingSystem{
     ComponentMapper<B2dBodyComponent> bodm;
     private World world;
     private Main main;
+    private Engine engine;
 
-    public LifeSystem(World world, Main main) {
+    public LifeSystem(World world, Main main, Engine engine) {
         super(Family.all(StatComponent.class).get());
         this.main = main;
-
+        this.engine = engine;
         this.world = world;
         sm = ComponentMapper.getFor(StatComponent.class);
         tm = ComponentMapper.getFor(TypeComponent.class);		 
@@ -40,7 +41,7 @@ public class LifeSystem extends IteratingSystem{
             main.screenset("GAME_OVER");
         }
         if(stats.getLeben() <= 0 && type.type == TypeComponent.ENEMY){
-            entity.removeAll();
+            engine.removeEntity(entity);
             world.destroyBody(body.body);
         }
     }

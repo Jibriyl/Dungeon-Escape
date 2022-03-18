@@ -13,15 +13,19 @@ public class StateComponent implements Component {
 	public static final int STATE_HIT = 8;
 	
 	private int state = 0;
-    public float time = 0.0f;
-    public boolean isLooping = false;
+    private String laststate = "DOWN";
 
-    public void set(int newState){
+    public void setstate(int newState){
         state = newState;
-        time = 0.0f;
     }
 
-    public int get(){
+    public int getstate(){
         return state;
+    }
+    public String getLaststate() {
+        return laststate;
+    }
+    public void setLaststate(String laststate) {
+        this.laststate = laststate;
     }
 }

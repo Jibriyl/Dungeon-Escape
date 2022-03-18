@@ -21,7 +21,9 @@ public class LVL_1 extends LVL_0{
 
         //Gegner
     
-        em.createbasicSimpleEnemy();
+        em.createbasicSimpleEnemy(30,50);
+        em.createbasicSimpleEnemy(30,30);
+
 
         //Scenery
         sm.createWall(96, 2, 192, 1);

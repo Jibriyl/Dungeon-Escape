@@ -39,7 +39,7 @@ public class Playermanager {
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
         TransformComponent position = engine.createComponent(TransformComponent.class);
         TextureComponent texture = engine.createComponent(TextureComponent.class);
-        StatComponent player = engine.createComponent(StatComponent.class);
+        StatComponent stats = engine.createComponent(StatComponent.class);
         CollisionComponent colComp = engine.createComponent(CollisionComponent.class);
         TypeComponent type = engine.createComponent(TypeComponent.class);
         StateComponent stateCom = engine.createComponent(StateComponent.class);
@@ -49,19 +49,19 @@ public class Playermanager {
         //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
         b2dbody.setdimension(7, 16);
         //Setzen der Playerstats Damage, Leben, Speed, Rüstung
-        player.setStats(10, 100, 1000, 20);
+        stats.setStats(10, 100, 1000, 20);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
         position.position.set(0,0,0);
         texture.atlas = testplayer;
         type.type = TypeComponent.PLAYER;
-        stateCom.set(StateComponent.STATE_NORMAL); 
+        stateCom.setstate(StateComponent.STATE_NORMAL); 
         b2dbody.body.setUserData(entity);
      
         //Alle Kompenenten des Spieler der Spieler Entity hinzufügen
         entity.add(b2dbody);
         entity.add(position);
         entity.add(texture);
-        entity.add(player);
+        entity.add(stats);
         entity.add(colComp);
         entity.add(type);
         entity.add(stateCom);

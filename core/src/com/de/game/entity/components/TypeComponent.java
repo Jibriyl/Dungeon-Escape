@@ -8,6 +8,7 @@ public class TypeComponent implements Component {
 	public static final int PLAYERATTACK = 2;
 	public static final int SCENERY = 3;
 	public static final int OTHER = 4;
+	public static final int ATTACK = 5;
 	
 	public int type = OTHER;
 
