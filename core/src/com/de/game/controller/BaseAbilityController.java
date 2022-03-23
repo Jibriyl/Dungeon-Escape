@@ -57,7 +57,7 @@ public class BaseAbilityController extends IteratingSystem{
 
     //Erstellen einer Entity die als angriff fungiert
     if (type.type == TypeComponent.PLAYER && controller.space && cooldown <= 0 && !attack){
-      simpleattack(sm.get(entity), body, trm.get(entity),11f,2f);
+      simpleattack(sm.get(entity), body, trm.get(entity),11f,16f);
       cooldown = 2;
       attack = true;
     }
