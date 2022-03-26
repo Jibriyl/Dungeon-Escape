@@ -27,13 +27,13 @@ public class Scenerymanager {
         textures = game.assetManager.manager.get(path);
         Entity entity = engine.createEntity();
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
-        b2dbody.body = bodyFactory.makeBox(x, y, width, height, BodyFactory.STONE, BodyType.StaticBody);
+        b2dbody.setBody(bodyFactory.makeBox(x, y, width, height, BodyFactory.STONE, BodyType.StaticBody));
         TextureComponent texture = engine.createComponent(TextureComponent.class);
         TypeComponent type = engine.createComponent(TypeComponent.class);
-        type.type = TypeComponent.SCENERY;
-        texture.region = textures.findRegion(name);
+        type.setType(TypeComponent.SCENERY);
+        texture.setRegion(textures.findRegion(name));
         
-        b2dbody.body.setUserData(entity);
+        b2dbody.getBody().setUserData(entity);
      
         entity.add(b2dbody);
         entity.add(texture);
@@ -45,12 +45,12 @@ public class Scenerymanager {
     public void createWall(float x, float y, float width, float height){
         Entity entity = engine.createEntity();
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
-        b2dbody.body = bodyFactory.makeBox(x, y, width, height, BodyFactory.STONE, BodyType.StaticBody);
+        b2dbody.setBody(bodyFactory.makeBox(x, y, width, height, BodyFactory.STONE, BodyType.StaticBody));
         TextureComponent texture = engine.createComponent(TextureComponent.class);
         TypeComponent type = engine.createComponent(TypeComponent.class);
-        type.type = TypeComponent.SCENERY;
+        type.setType(TypeComponent.SCENERY);
 
-        b2dbody.body.setUserData(entity);
+        b2dbody.getBody().setUserData(entity);
      
         entity.add(b2dbody);
         entity.add(texture);

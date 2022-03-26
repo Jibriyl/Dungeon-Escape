@@ -56,20 +56,24 @@ public class BaseAbilityController extends IteratingSystem{
     B2dBodyComponent body = bodm.get(entity);
 
     //Erstellen einer Entity die als angriff fungiert
-    if (type.type == TypeComponent.PLAYER && controller.space && cooldown <= 0 && !attack){
+    if (type.getType() == TypeComponent.PLAYER && controller.space && cooldown <= 0 && !attack){
       simpleattack(sm.get(entity), body, trm.get(entity),11f,16f);
-      cooldown = 2;
+      //Cooldwon für den Normalen Angriff
+      cooldown = 0.3f;
+      //Merkt sich ob bereichts ein Angriff im spiel ist, so das niemals 2 angriffe gleichzeitig da sein können
       attack = true;
     }
-    if (cooldown > 0){
+    //Berechnet den Angriffscooldown
+    if (cooldown > 0 && type.getType() == TypeComponent.PLAYER){
       cooldown = cooldown - deltaTime;
     }
+    //Entfernt den Angriff nach 20 Gameticks
     if (!entity.isScheduledForRemoval()){
-      if (type.type == TypeComponent.ATTACK){
+      if (type.getType() == TypeComponent.ATTACK){
         dauer = dauer  + 1;
         if (dauer == 20){
           engine.removeEntity(entity);
-          world.destroyBody(body.body);
+          world.destroyBody(body.getBody());
           dauer = 0;
           attack = false;
         }
@@ -118,17 +122,17 @@ public class BaseAbilityController extends IteratingSystem{
     StateComponent stateCom = engine.createComponent(StateComponent.class);
   
     // create the data for the components and add them to the components
-    b2dbody.body = bodyFactory.makeBox(x, y, widht, height, BodyFactory.PLAYER, BodyType.DynamicBody);
-    bodyFactory.makeAllFixturesSensors(b2dbody.body);
+    b2dbody.setBody(bodyFactory.makeBox(x, y, widht, height, BodyFactory.PLAYER, BodyType.DynamicBody)); 
+    bodyFactory.makeAllFixturesSensors(b2dbody.getBody());
     //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
     b2dbody.setdimension(widht, height);
-    stats.setStats(10, 100, 1000, 20);
-    //Setzen der Playerstats Damage, Leben, Speed, Rüstung
+    //Setzen der Playerstats Damage, Leben, Maxleben, Speed, Rüstung
+    stats.setStats(10, 100, 100,  1000, 20);
     //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
     position.position.set(10,10,0);
-    type.type = TypeComponent.ATTACK;
+    type.setType(TypeComponent.ATTACK);
     stateCom.setstate(StateComponent.STATE_NORMAL); 
-    b2dbody.body.setUserData(entity);
+    b2dbody.getBody().setUserData(entity);
   
     //Alle Kompenenten des Spieler der Spieler Entity hinzufügen
     entity.add(b2dbody);

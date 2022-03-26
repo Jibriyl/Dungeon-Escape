@@ -17,7 +17,7 @@ public class LVL_1 extends LVL_0{
 
         //Erstellen der Objekte im Level
         //Spieler
-        pm.createPlayer("test");
+        pm.createPlayer("test", 0, 0);
 
         //Gegner
     

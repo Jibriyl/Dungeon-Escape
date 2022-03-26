@@ -24,15 +24,13 @@ public class B2dContactListener implements ContactListener {
 		if(fa.getBody().getUserData() instanceof Entity){
 			Entity ent = (Entity) fa.getBody().getUserData();
 			entityCollision(ent,fb);
-			//System.out.println("tsst");
-
-			return;
-		}else if(fb.getBody().getUserData() instanceof Entity){
+			System.out.println("tsst");
+		}
+		
+		if(fb.getBody().getUserData() instanceof Entity){
 			Entity ent = (Entity) fb.getBody().getUserData();
 			entityCollision(ent,fa);
-			//System.out.println("tsst2");
-
-			return;
+			System.out.println("tsst2");
 		}
 	}
 
@@ -44,9 +42,9 @@ public class B2dContactListener implements ContactListener {
 			CollisionComponent colb = colEnt.getComponent(CollisionComponent.class);
 			
 			if(col != null){
-				col.collisionEntity = colEnt;
+				col.setCollisionEntity(colEnt);
 			}else if(colb != null){
-				colb.collisionEntity = ent;
+				colb.setCollisionEntity(ent);
 			}
 		}
 	}

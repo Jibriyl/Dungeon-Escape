@@ -98,11 +98,11 @@ public class RenderingSystem extends SortedIteratingSystem {
             TransformComponent t = transformM.get(entity);
             B2dBodyComponent body = bodyM.get(entity);
 
-            if (tex.region == null || t.isHidden) {
+            if (tex.getRegion() == null || t.getisHidden()) {
                 continue;
             }
 
-            batch.draw(tex.region, (t.position.x - (body.getWidth()/2)), (t.position.y - (body.getHeight()/2)), body.getWidth(), body.getHeight());
+            batch.draw(tex.getRegion(), (t.position.x - (body.getWidth()/2)), (t.position.y - (body.getHeight()/2)), body.getWidth(), body.getHeight());
         }
 
         batch.end();

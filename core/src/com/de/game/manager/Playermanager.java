@@ -27,13 +27,13 @@ public class Playermanager {
         testplayer = game.assetManager.manager.get("Output/joshuachar1.atlas");
     }
 
-    public void createPlayer(String type){
+    public void createPlayer(String type, float x, float y){
         if(type == "test"){
-            createbasicPlayer();
+            createbasicPlayer(x, y);
         }
     }
 
-    private void createbasicPlayer(){
+    private void createbasicPlayer(float x, float y){
         // Create the Entity and all the components that will go in the entity
         Entity entity = engine.createEntity();
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
@@ -45,17 +45,17 @@ public class Playermanager {
         StateComponent stateCom = engine.createComponent(StateComponent.class);
      
         // create the data for the components and add them to the components
-        b2dbody.body = bodyFactory.makeBox(50, 50, 7, 16, BodyFactory.PLAYER, BodyType.DynamicBody);
+        b2dbody.setBody(bodyFactory.makeBox(50, 50, 7, 16, BodyFactory.PLAYER, BodyType.DynamicBody));
         //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
         b2dbody.setdimension(7, 16);
-        //Setzen der Playerstats Damage, Leben, Speed, Rüstung
-        stats.setStats(10, 100, 1000, 20);
+        //Setzen der Playerstats Damage, Leben, Maxleben, Speed, Rüstung
+        stats.setStats(10, 100, 100, 1000, 20);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
-        position.position.set(0,0,0);
-        texture.atlas = testplayer;
-        type.type = TypeComponent.PLAYER;
+        position.position.set(x,y,0);
+        texture.setAtlas(testplayer);
+        type.setType(TypeComponent.PLAYER);
         stateCom.setstate(StateComponent.STATE_NORMAL); 
-        b2dbody.body.setUserData(entity);
+        b2dbody.getBody().setUserData(entity);
      
         //Alle Kompenenten des Spieler der Spieler Entity hinzufügen
         entity.add(b2dbody);

@@ -37,12 +37,12 @@ public class LifeSystem extends IteratingSystem{
         TypeComponent type = tm.get(entity);
         B2dBodyComponent body = bodm.get(entity); 
 
-        if(stats.getLeben() <= 0 && type.type == TypeComponent.PLAYER){
+        if(stats.getLeben() <= 0 && type.getType() == TypeComponent.PLAYER){
             main.screenset("GAME_OVER");
         }
-        if(stats.getLeben() <= 0 && type.type == TypeComponent.ENEMY){
+        if(stats.getLeben() <= 0 && type.getType() == TypeComponent.ENEMY){
             engine.removeEntity(entity);
-            world.destroyBody(body.body);
+            world.destroyBody(body.getBody());
         }
     }
     

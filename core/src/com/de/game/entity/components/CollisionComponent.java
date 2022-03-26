@@ -2,10 +2,13 @@ package com.de.game.entity.components;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
-/*
- *  Stores collision data such as entity that this entity has collided with
- */
+//Speichert die letzte collision einer Entity, wird im Contactlistener gesetzt
 public class CollisionComponent implements Component {
-	public Entity collisionEntity;; 
+	private Entity collisionEntity;; 
 
+	public Entity getCollisionEntity() {
+		return collisionEntity;
+	}public void setCollisionEntity(Entity collisionEntity) {
+		this.collisionEntity = collisionEntity;
+	}
 }

@@ -36,16 +36,16 @@ public class SimpleEnemyController extends IteratingSystem{
     TransformComponent position = tfm.get(entity);
 
     TypeComponent type = tm.get(entity);
-    if(type.type == TypeComponent.ENEMY){
+    if(type.getType() == TypeComponent.ENEMY){
       B2dBodyComponent b2body = bodm.get(entity);
       StateComponent state = sm.get(entity);
       StatComponent player = pm.get(entity);
       Vector2 difference = new Vector2(playerpos.x - position.position.x, playerpos.y - position.position.y);
       
-      b2body.body.applyForceToCenter(difference.x * player.getSpeed(), difference.y * player.getSpeed(),true);
+      b2body.getBody().applyForceToCenter(difference.x * player.getSpeed(), difference.y * player.getSpeed(),true);
     }
 
-    if(type.type == TypeComponent.PLAYER){
+    if(type.getType() == TypeComponent.PLAYER){
       playerpos = new Vector2(position.position.x, position.position.y);
     }
   }

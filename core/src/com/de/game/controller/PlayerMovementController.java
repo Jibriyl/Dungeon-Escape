@@ -30,32 +30,32 @@ public class PlayerMovementController extends IteratingSystem{
 	protected void processEntity(Entity entity, float deltaTime) {
 		TypeComponent type = tm.get(entity);
 
-		if (type.type == TypeComponent.PLAYER){
+		if (type.getType() == TypeComponent.PLAYER){
 			B2dBodyComponent b2body = bodm.get(entity);
 			StateComponent state = sm.get(entity);
 			StatComponent player = pm.get(entity);
 			
-			if(b2body.body.getLinearVelocity().x <= 0.5f && b2body.body.getLinearVelocity().y <= 0.5f){
+			if(b2body.getBody().getLinearVelocity().x <= 0.5f && b2body.getBody().getLinearVelocity().y <= 0.5f){
 				state.setstate(StateComponent.STATE_NORMAL);
 			}
 			
 			if(controller.up){
-				b2body.body.applyForceToCenter(0, player.getSpeed(),true);
+				b2body.getBody().applyForceToCenter(0, player.getSpeed(),true);
 				state.setstate(StateComponent.STATE_MOVING_UP);
 				state.setLaststate("UP");
 			}
 			if(controller.down){
-				b2body.body.applyForceToCenter(0, -player.getSpeed(),true);
+				b2body.getBody().applyForceToCenter(0, -player.getSpeed(),true);
 				state.setstate(StateComponent.STATE_MOVING_DOWN);
 				state.setLaststate("DOWN");
 			}
 			if(controller.left){
-				b2body.body.applyForceToCenter(-player.getSpeed(), 0,true);
+				b2body.getBody().applyForceToCenter(-player.getSpeed(), 0,true);
 				state.setstate(StateComponent.STATE_MOVING_LEFT);
 				state.setLaststate("LEFT");
 			}
 			if(controller.right){
-				b2body.body.applyForceToCenter(player.getSpeed(), 0,true);
+				b2body.getBody().applyForceToCenter(player.getSpeed(), 0,true);
 				state.setstate(StateComponent.STATE_MOVING_RIGHT);
 				state.setLaststate("RIGHT");
 			}

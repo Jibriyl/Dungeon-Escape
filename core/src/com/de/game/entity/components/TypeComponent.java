@@ -10,10 +10,13 @@ public class TypeComponent implements Component {
 	public static final int OTHER = 4;
 	public static final int ATTACK = 5;
 	
-	public int type = OTHER;
+	private int type = OTHER;
 
-	public int getTypenumber() {
+	public int getType() {
 		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
 }
 

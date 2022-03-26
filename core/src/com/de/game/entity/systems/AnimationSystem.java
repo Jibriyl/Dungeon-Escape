@@ -38,15 +38,15 @@ public class AnimationSystem extends IteratingSystem {
                 t2 = 0;
                 t3 = 0;
                 t4 = 0;
-                texture.region = texture.atlas.findRegion("front_standing");
+                texture.setRegion(texture.getAtlas().findRegion("front_standing"));
                 t1 += deltaTime;
             }
             else if(t1 <= 0.250){
-                texture.region = texture.atlas.findRegion("front_waltking_a");
+                texture.setRegion(texture.getAtlas().findRegion("front_waltking_a"));
                 t1 += deltaTime;
             }
             else if(t1 <= 0.375){
-                texture.region = texture.atlas.findRegion("front_waltking_b");
+                texture.setRegion(texture.getAtlas().findRegion("front_waltking_b"));
                 t1 += deltaTime;
             }
             else{
@@ -58,15 +58,15 @@ public class AnimationSystem extends IteratingSystem {
                 t1 = 0;
                 t3 = 0;
                 t4 = 0;
-                texture.region = texture.atlas.findRegion("back_standing");
+                texture.setRegion(texture.getAtlas().findRegion("back_standing"));
                 t2 += deltaTime;
             }
             else if(t2 <= 0.250){
-                texture.region = texture.atlas.findRegion("back_waltking_a");
+                texture.setRegion(texture.getAtlas().findRegion("back_waltking_a"));
                 t2 += deltaTime;
             }
             else if(t2 <= 0.375){
-                texture.region = texture.atlas.findRegion("back_waltking_b");
+                texture.setRegion(texture.getAtlas().findRegion("back_waltking_b"));
                 t2 += deltaTime;
             }
             else{
@@ -78,15 +78,15 @@ public class AnimationSystem extends IteratingSystem {
                 t1 = 0;
                 t2 = 0;
                 t4 = 0;
-                texture.region = texture.atlas.findRegion("left_standing");
+                texture.setRegion(texture.getAtlas().findRegion("left_standing"));
                 t3 += deltaTime;
             }
             else if(t3 <= 0.250){
-                texture.region = texture.atlas.findRegion("left_waltking_a");
+                texture.setRegion(texture.getAtlas().findRegion("left_waltking_a"));
                 t3 += deltaTime;
             }
             else if(t3 <= 0.375){
-                texture.region = texture.atlas.findRegion("left_waltking_b");
+                texture.setRegion(texture.getAtlas().findRegion("left_waltking_b"));
                 t3 += deltaTime;
             }
             else{
@@ -98,15 +98,15 @@ public class AnimationSystem extends IteratingSystem {
                 t1 = 0;
                 t2 = 0;
                 t3 = 0;
-                texture.region = texture.atlas.findRegion("right_standing");
+                texture.setRegion(texture.getAtlas().findRegion("right_standing"));
                 t4 += deltaTime;
             }
             else if(t4 <= 0.250){
-                texture.region = texture.atlas.findRegion("right_waltking_b");
+                texture.setRegion(texture.getAtlas().findRegion("right_waltking_b"));
                 t4 += deltaTime;
             }
             else if(t4 <= 0.375){
-                texture.region = texture.atlas.findRegion("right_waltking_a");
+                texture.setRegion(texture.getAtlas().findRegion("right_waltking_a"));
                 t4 += deltaTime;
             }
             else{
@@ -115,16 +115,16 @@ public class AnimationSystem extends IteratingSystem {
         }
         else if(state.getstate() == StateComponent.STATE_NORMAL){
             if (state.getLaststate() == "DOWN"){
-                texture.region = texture.atlas.findRegion("front_standing");
+                texture.setRegion(texture.getAtlas().findRegion("front_standing"));
             }
             if (state.getLaststate() == "UP"){
-                texture.region = texture.atlas.findRegion("back_standing");
+                texture.setRegion(texture.getAtlas().findRegion("back_standing"));
             }
             if (state.getLaststate() == "LEFT"){
-                texture.region = texture.atlas.findRegion("left_standing");
+                texture.setRegion(texture.getAtlas().findRegion("left_standing"));
             }
             if (state.getLaststate() == "RIGHT"){
-                texture.region = texture.atlas.findRegion("right_standing");
+                texture.setRegion(texture.getAtlas().findRegion("right_standing"));
             }
         }
 

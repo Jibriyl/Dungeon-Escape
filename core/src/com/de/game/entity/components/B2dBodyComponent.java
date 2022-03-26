@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.physics.box2d.Body;
 
 public class B2dBodyComponent implements Component{
-	public Body body;
+	private Body body;
 	private float width;
 	private float height;
 
@@ -21,5 +21,11 @@ public class B2dBodyComponent implements Component{
 	}
 	public void remove(){
 		body = null;
+	}
+	public Body getBody() {
+		return body;
+	}
+	public void setBody(Body body) {
+		this.body = body;
 	}
 }
