@@ -16,6 +16,9 @@ public class MAIN_MENU extends ScreenAdapter{
     //Import des Assets und nötigen Objekte in den MAIN_MENU Screen
     public MAIN_MENU(Main game){
         this.game = game;
+
+        //Heir werden die Assets geladen
+
     }
 
     @Override
@@ -34,9 +37,7 @@ public class MAIN_MENU extends ScreenAdapter{
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        //Laden der Assets 
-        game.font.draw(game.batch, "DUNGEON ESCAPE", Gdx.graphics.getWidth()*.25f, Gdx.graphics.getHeight() * .75f); 
-        game.batch.draw(game.img, 0, 0);
+        //Hier werden die Assets gemalt 
 
         //Beenden des laden
         game.batch.end();
