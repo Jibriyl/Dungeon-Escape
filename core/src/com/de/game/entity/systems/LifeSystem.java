@@ -19,6 +19,7 @@ public class LifeSystem extends IteratingSystem{
     private World world;
     private Main main;
     private Engine engine;
+    private int win;
 
     public LifeSystem(World world, Main main, Engine engine) {
         super(Family.all(StatComponent.class).get());
@@ -28,7 +29,7 @@ public class LifeSystem extends IteratingSystem{
         sm = ComponentMapper.getFor(StatComponent.class);
         tm = ComponentMapper.getFor(TypeComponent.class);		 
         bodm = ComponentMapper.getFor(B2dBodyComponent.class);
-
+        win = 0;
     }
 
     @Override
@@ -37,13 +38,27 @@ public class LifeSystem extends IteratingSystem{
         TypeComponent type = tm.get(entity);
         B2dBodyComponent body = bodm.get(entity); 
 
+        //Wenn das Leben des Spielers auf 0 fällt wird zum Game over screen gewechselt
         if(stats.getLeben() <= 0 && type.getType() == TypeComponent.PLAYER){
             main.screenset("GAME_OVER");
         }
+        //Wenn das Leben einer Gegners auf 0 fällt wird er gelöscht
         if(stats.getLeben() <= 0 && type.getType() == TypeComponent.ENEMY){
+            //Löschen der Gegner entity
             engine.removeEntity(entity);
+            //Löschen des Bodys des Gegners
             world.destroyBody(body.getBody());
         }
+
+        //Stellt fest ob noch gegner Leben und wenn nicht wechselt zum win screen
+        if (type.getType() == TypeComponent.PLAYER){
+             win += 1;
+        }
+        if (type.getType() == TypeComponent.ENEMY){
+            win = 0;
+        }
+        if (win > 1){
+            main.screenset("WIN_SCREEN");
+        }
     }
-    
 }

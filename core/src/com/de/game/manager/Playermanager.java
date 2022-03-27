@@ -24,17 +24,26 @@ public class Playermanager {
     public Playermanager(BodyFactory bodyFactory, PooledEngine engine, Main game){
         this.engine = engine;
         this.bodyFactory = bodyFactory;
+        //Importieren aller benutzten Charakter texturen
+        //Alle texturen eines Charakters sind in einem Atlas gespeichert
         testplayer = game.assetManager.manager.get("Output/joshuachar1.atlas");
     }
 
+    //Funktion zur auswahl welcher player selected wurde
     public void createPlayer(String type, float x, float y){
-        if(type == "test"){
-            createbasicPlayer(x, y);
+        if(type == "player1"){
+            createplayer1(x, y);
+        }
+        else if(type == "player2"){
+
+        }
+        else if(type == "player3"){
+            
         }
     }
 
-    private void createbasicPlayer(float x, float y){
-        // Create the Entity and all the components that will go in the entity
+    private void createplayer1(float x, float y){
+        // Erstellen aller Entitys für den Player
         Entity entity = engine.createEntity();
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
         TransformComponent position = engine.createComponent(TransformComponent.class);
@@ -44,7 +53,7 @@ public class Playermanager {
         TypeComponent type = engine.createComponent(TypeComponent.class);
         StateComponent stateCom = engine.createComponent(StateComponent.class);
      
-        // create the data for the components and add them to the components
+        // Erstellen des player bodys
         b2dbody.setBody(bodyFactory.makeBox(x, y, 7, 16, BodyFactory.PLAYER, BodyType.DynamicBody));
         //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
         b2dbody.setdimension(7, 16);

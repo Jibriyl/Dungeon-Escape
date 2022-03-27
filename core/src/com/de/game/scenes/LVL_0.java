@@ -41,10 +41,11 @@ public class LVL_0 extends ScreenAdapter{
     protected Scenerymanager sm;
 
     protected LVL_0 (Main game,boolean debug){
+        boolean debugmode = debug;
         this.game = game;
         controller = new KeyboardController();
 		world = new World(new Vector2(0,0), true);
-        world.setContactListener(new B2dContactListener());
+        world.setContactListener(new B2dContactListener(debugmode));
         bodyFactory = new BodyFactory(world);
         cam = new OrthographicCamera(192,108);
 
@@ -72,7 +73,7 @@ public class LVL_0 extends ScreenAdapter{
         engine.addSystem(renderingSystem);
         engine.addSystem(new SimpleEnemyController());
         engine.addSystem(new LifeSystem(world, game, engine));
-        if(debug){
+        if(debugmode){
             engine.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
         }
         engine.addSystem(new BaseAbilityController(world, engine, bodyFactory, controller));

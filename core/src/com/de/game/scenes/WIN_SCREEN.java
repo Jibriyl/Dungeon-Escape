@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.de.game.Main;
 import com.de.game.inputs.KeyboardController;
 
-public class GAME_OVER extends ScreenAdapter{
+public class WIN_SCREEN extends ScreenAdapter{
     
     Main game;
     private Texture gameoverbackground;
@@ -18,7 +18,7 @@ public class GAME_OVER extends ScreenAdapter{
     private float cd;
     
 
-    public GAME_OVER (Main game){
+    public WIN_SCREEN (Main game){
         this.game = game;
         controller = new KeyboardController();
 
@@ -41,52 +41,13 @@ public class GAME_OVER extends ScreenAdapter{
         game.batch.begin();
         ScreenUtils.clear(0, 0, 0, 1);
 
-        //Screenlogic
-        if (cd <= 0){
-            if (controller.up){
-                auswahl -= 1;
-                cd = 0.5f;
-            }
-            if (controller.down){
-                auswahl +=1;
-                cd = 0.5f;
-            }
-            if (auswahl < 0){
-                auswahl = 0;
-            }
-            if (auswahl > 2){
-                auswahl = 2;
-            }
-        }
-        else {
-            cd -= delta;
-        }
-
-
         //Laden der Assets
-        if (auswahl == 0){
-            System.out.println("Retry");
-        }
-        else if (auswahl == 1){
-            System.out.println("Main");
-        }
-        else if (auswahl == 2){
-            System.out.println("Exit");
-        }
         game.batch.draw(gameoverbackground, 0, 0, 1920, 1080);
         game.batch.draw(gameover, 760, 760, 400, 140);
         game.batch.end();
 
         if (controller.enter){
-            if (auswahl == 0){
-                game.screenset("LVL_1");
-            }
-            else if (auswahl == 1){
-                game.screenset("MAIN_MENU");
-            }
-            else if (auswahl == 2){
-                System.exit(0);
-            }
+            System.exit(0);
         }
     }
 

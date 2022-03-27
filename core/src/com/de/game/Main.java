@@ -9,6 +9,7 @@ import com.de.game.scenes.CHARACTER_SELECT;
 import com.de.game.scenes.GAME_OVER;
 import com.de.game.scenes.LVL_1;
 import com.de.game.scenes.MAIN_MENU;
+import com.de.game.scenes.WIN_SCREEN;
 
 public class Main extends Game {
     public SpriteBatch batch;
@@ -47,6 +48,9 @@ public class Main extends Game {
         }
         else if(screen == "CHARACTER_SELECT"){
             setScreen(new CHARACTER_SELECT(this));
+        }
+        else if(screen == "WIN_SCREEN"){
+            setScreen(new WIN_SCREEN(this));
         }
     }
 }
