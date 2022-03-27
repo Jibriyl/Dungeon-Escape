@@ -3,25 +3,26 @@ package com.de.game.scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.de.game.Main;
+import com.de.game.inputs.KeyboardController;
 
 public class CHARACTER_SELECT extends ScreenAdapter{
 
     Main game;
-    private Stage stage;
+    private KeyboardController controller;
 
     public CHARACTER_SELECT (Main game){
         this.game = game;
+        controller = new KeyboardController();
+
 
         //Heir werden die Assets geladen
     }
 
     @Override
     public void show(){
-
+        Gdx.input.setInputProcessor(controller);
     }
 
     @Override
@@ -32,15 +33,9 @@ public class CHARACTER_SELECT extends ScreenAdapter{
             game.batch.begin();
             ScreenUtils.clear(0, 0, 0, 1);
     
-            //Createn des Stage um auf User-Inputs zu testen
-            stage = new Stage(new ScreenViewport());
-            Gdx.input.setInputProcessor(stage);
-    
             //Hier werden die Assets gemalt 
     
             //Beenden des laden
             game.batch.end();
     }
-
-    
 }

@@ -13,7 +13,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
 public class BodyFactory {
 	
-	private static BodyFactory thisInstance;
     private World world;
     public static final int STEEL = 0;
     public static final int WOOD = 1;
@@ -21,17 +20,9 @@ public class BodyFactory {
     public static final int STONE = 3;
     public static final int PLAYER = 4;
 		
-	private BodyFactory(World world){
+	public BodyFactory(World world){
 		this.world = world;
 	}
-    
-    public static BodyFactory getInstance(World world){
-        if(thisInstance == null){
-            thisInstance = new BodyFactory(world);
-        }
-        return thisInstance;
-    }
-
     
     static public FixtureDef makeFixture(int material, Shape shape){
         FixtureDef fixtureDef = new FixtureDef();

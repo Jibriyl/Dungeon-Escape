@@ -17,13 +17,14 @@ public class LVL_1 extends LVL_0{
 
         //Erstellen der Objekte im Level
         //Spieler
-        pm.createPlayer("test", 0, 0);
+        pm.createPlayer("test", 100, 50);
 
         //Gegner
-    
         em.createbasicSimpleEnemy(30,50);
-        em.createbasicSimpleEnemy(30,30);
-
+        em.createbasicSimpleEnemy(80,30);
+        em.createbasicSimpleEnemy(10,30);
+        em.createbasicSimpleEnemy(50,30);
+        em.createbasicSimpleEnemy(40,30);
 
         //Scenery
         sm.createWall(96, 2, 192, 1);

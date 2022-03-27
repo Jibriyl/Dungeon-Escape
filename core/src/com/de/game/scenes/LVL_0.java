@@ -45,7 +45,7 @@ public class LVL_0 extends ScreenAdapter{
         controller = new KeyboardController();
 		world = new World(new Vector2(0,0), true);
         world.setContactListener(new B2dContactListener());
-        bodyFactory = BodyFactory.getInstance(world);
+        bodyFactory = new BodyFactory(world);
         cam = new OrthographicCamera(192,108);
 
 

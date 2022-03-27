@@ -45,13 +45,13 @@ public class Playermanager {
         StateComponent stateCom = engine.createComponent(StateComponent.class);
      
         // create the data for the components and add them to the components
-        b2dbody.setBody(bodyFactory.makeBox(50, 50, 7, 16, BodyFactory.PLAYER, BodyType.DynamicBody));
+        b2dbody.setBody(bodyFactory.makeBox(x, y, 7, 16, BodyFactory.PLAYER, BodyType.DynamicBody));
         //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
         b2dbody.setdimension(7, 16);
         //Setzen der Playerstats Damage, Leben, Maxleben, Speed, Rüstung
         stats.setStats(10, 100, 100, 1000, 20);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
-        position.position.set(x,y,0);
+        position.position.set(7,16,0);
         texture.setAtlas(testplayer);
         type.setType(TypeComponent.PLAYER);
         stateCom.setstate(StateComponent.STATE_NORMAL); 

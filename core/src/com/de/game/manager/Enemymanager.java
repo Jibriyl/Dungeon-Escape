@@ -38,13 +38,13 @@ public class Enemymanager {
         StateComponent stateCom = engine.createComponent(StateComponent.class);
      
         // create the data for the components and add them to the components
-        b2dbody.setBody(bodyFactory.makeCircle(100, 20, 5, BodyFactory.PLAYER, 4f));
+        b2dbody.setBody(bodyFactory.makeCircle(x, y, 5, BodyFactory.PLAYER, 4f));
         //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
         b2dbody.setdimension(5, 5);
         //Setzen der Playerstats Damage, Leben, Maxleben, Speed, Rüstung
         stats.setStats(10, 50, 50, 1, 20);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
-        position.position.set(x,y,0);
+        position.position.set(5,5,0);
         type.setType(TypeComponent.ENEMY);
         stateCom.setstate(StateComponent.STATE_NORMAL); 
         b2dbody.getBody().setUserData(entity);

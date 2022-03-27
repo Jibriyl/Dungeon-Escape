@@ -26,7 +26,7 @@ public class Main extends Game {
         font = new BitmapFont();
         
         //Setzen des Start Screens
-        screenset("LVL_1");        
+        screenset("MAIN_MENU");        
     }
 
     @Override

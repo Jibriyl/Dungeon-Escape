@@ -6,13 +6,13 @@ import com.badlogic.gdx.Input.Keys;
 public class KeyboardController implements InputProcessor{
 
     //Maybe diese noch private setzen und mit getmethode zugänglich machen
-    public boolean left,right,up,down,space,shift;
+    public boolean left,right,up,down,space,shift,enter;
 
     @Override
     public boolean keyDown(int keycode) {
-    boolean keyProcessed = false;
+        boolean keyProcessed = false;
 
-    switch (keycode) // switch code base on the variable keycode
+        switch (keycode) // switch code base on the variable keycode
         {
             case Keys.A:
                 left = true;
@@ -30,25 +30,27 @@ public class KeyboardController implements InputProcessor{
                 down = true;
                 keyProcessed = true;
                 break;
+            }
+        if (Keys.SPACE == keycode){
+            space = true;
+            keyProcessed = true;
         }
-    if (Keys.SPACE == keycode){
-        space = true;
-        keyProcessed = true;
-    }
-    if (Keys.SHIFT_LEFT == keycode){
-        shift = true;
-        keyProcessed = true;
-    }
-    
-
+        if (Keys.SHIFT_LEFT == keycode){
+            shift = true;
+            keyProcessed = true;
+        }
+        if (Keys.ENTER == keycode){
+            enter = true;
+            keyProcessed = true;
+        }
     
     return keyProcessed;    //  return our keyProcessed flag
     }
 
     @Override
     public boolean keyUp(int keycode) {
-    boolean keyProcessed = false;
-    switch (keycode) // switch code base on the variable keycode
+        boolean keyProcessed = false;
+        switch (keycode) // switch code base on the variable keycode
         {
             case Keys.A: 
                 left = false;
@@ -66,16 +68,21 @@ public class KeyboardController implements InputProcessor{
                 down = false;
                 keyProcessed = true;
         }
-    if (Keys.SPACE == keycode){
-        space = false;
-        keyProcessed = true;
-    }
-    if (Keys.SHIFT_LEFT == keycode){
-        shift = false;
-        keyProcessed = true;
-    }
+        if (Keys.SPACE == keycode){
+            space = false;
+            keyProcessed = true;
+        }
+        if (Keys.SHIFT_LEFT == keycode){
+            shift = false;
+            keyProcessed = true;
+        }
+        if (Keys.ENTER == keycode){
+            enter = false;
+            keyProcessed = true;
+        }
+
     return keyProcessed;    //  return our peyProcessed flag
-}
+    }
 
     @Override
     public boolean keyTyped(char character) {

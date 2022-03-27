@@ -74,7 +74,7 @@ public class CollisionSystem  extends IteratingSystem {
 					//Berechnen der richtung in der der gegner zum spieler ist
 					System.out.println("Attack hit Enemy");
 					stats.nehmeschaden(attackStats.getDamage());
-					spielerbody.getBody().applyForceToCenter(difference.x * 200, -difference.y * 200,true);
+					spielerbody.getBody().applyForceToCenter(difference.x * 200, difference.y * 200,true);
 				}
 				cc.setCollisionEntity(null); // collision handled reset component
 			}
