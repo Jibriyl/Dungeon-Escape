@@ -3,6 +3,7 @@ package com.de.game.scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -12,9 +13,15 @@ public class GAME_OVER extends ScreenAdapter{
     
     Main game;
     private Stage stage;
+    private Texture gameoverbackground;
+    private Texture gameover;
 
     public GAME_OVER (Main game){
         this.game = game;
+
+        gameoverbackground = game.assetManager.manager.get("Input/game/Gameoverbackground.png");
+        gameover = game.assetManager.manager.get("Input/game/Gameover.png");
+
     }
 
     @Override
@@ -36,7 +43,10 @@ public class GAME_OVER extends ScreenAdapter{
     
             //Laden der Assets 
             game.font.draw(game.batch, "Game Over", Gdx.graphics.getWidth()*.25f, Gdx.graphics.getHeight() * .75f); 
-            
+            game.batch.draw(gameoverbackground, 0, 0, 1920, 1080);
+            game.batch.draw(gameover, 760, 760, 400, 140);
+
+
             game.batch.end();
     }
 }
