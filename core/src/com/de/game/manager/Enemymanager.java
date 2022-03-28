@@ -24,6 +24,8 @@ public class Enemymanager {
     public Enemymanager(BodyFactory bodyFactory, PooledEngine engine, Main game){
         this.engine = engine;
         this.bodyFactory = bodyFactory;
+        texture = game.assetManager.manager.get("Output/slime.atlas");
+
     }
 
     public void createbasicSimpleEnemy(float x, float y){
@@ -31,7 +33,7 @@ public class Enemymanager {
         Entity entity = engine.createEntity();
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
         TransformComponent position = engine.createComponent(TransformComponent.class);
-        TextureComponent texture = engine.createComponent(TextureComponent.class);
+        TextureComponent texturecom = engine.createComponent(TextureComponent.class);
         StatComponent stats = engine.createComponent(StatComponent.class);
         CollisionComponent colComp = engine.createComponent(CollisionComponent.class);
         TypeComponent type = engine.createComponent(TypeComponent.class);
@@ -45,7 +47,8 @@ public class Enemymanager {
         stats.setStats(10, 50, 50, 1, 20);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
         position.position.set(5,5,0);
-        type.setType(TypeComponent.ENEMY);
+        texturecom.setAtlas(texture);
+        type.setType(TypeComponent.SLIME);
         stateCom.setstate(StateComponent.STATE_NORMAL); 
         b2dbody.getBody().setUserData(entity);
      
@@ -56,6 +59,7 @@ public class Enemymanager {
         entity.add(colComp);
         entity.add(type);
         entity.add(stateCom);
+        entity.add(texturecom);
      
         //Die Entity in die engine adden
         engine.addEntity(entity);

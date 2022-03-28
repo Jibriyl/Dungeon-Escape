@@ -9,6 +9,7 @@ public class TypeComponent implements Component {
 	public static final int SCENERY = 3;
 	public static final int OTHER = 4;
 	public static final int ATTACK = 5;
+	public static final int SLIME = 6;
 	
 	private int type = OTHER;
 
