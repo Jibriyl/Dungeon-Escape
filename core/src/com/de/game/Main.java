@@ -30,7 +30,7 @@ public class Main extends Game {
         assetManager.manager.finishLoading();
 
         //Setzen des Start Screens
-        screenset("LVL_1", "player1");        
+        screenset("MAIN_MENU", "player1");        
     }
 
     @Override
