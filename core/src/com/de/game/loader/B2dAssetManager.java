@@ -12,11 +12,13 @@ public class B2dAssetManager {
 	public final String gameoverbackground = "Input/game/Gameoverbackground.png";
     public final String gameover = "Input/game/Gameover.png";
     public final String player = "Output/joshuachar1.atlas";
+    public final String charback = "Input/charauswahl/Back.png";
 
     public void queueAddImages(){
         manager.load(lvl1background, Texture.class);
         manager.load(gameoverbackground, Texture.class);
         manager.load(player, TextureAtlas.class);
         manager.load(gameover, Texture.class);
+        manager.load(charback, Texture.class);
     }
 }
