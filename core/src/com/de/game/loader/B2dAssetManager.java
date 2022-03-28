@@ -32,6 +32,7 @@ public class B2dAssetManager {
         manager.load(lvl1background, Texture.class);
         manager.load(gameoverbackground, Texture.class);
         manager.load(player, TextureAtlas.class);
+        manager.load(slime, TextureAtlas.class);
         manager.load(gameover, Texture.class);
 
         manager.load(charback, Texture.class);
@@ -46,6 +47,5 @@ public class B2dAssetManager {
         manager.load(mainStart, Texture.class);
         manager.load(mainVerlassen, Texture.class);
         manager.load(mainBackground, Texture.class);
-        manager.load(slime, TextureAtlas.class);
     }
 }
