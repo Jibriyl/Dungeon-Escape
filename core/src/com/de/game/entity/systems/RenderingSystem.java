@@ -46,7 +46,7 @@ public class RenderingSystem extends SortedIteratingSystem {
         return pixelValue * PIXELS_TO_METRES;
     }
 
-    private SpriteBatch batch; // a reference to our spritebatch
+    private SpriteBatch batch;
     private Array<Entity> renderQueue; // an array used to allow sorting of images allowing us to draw images on top of each other
     private Comparator<Entity> comparator; // a comparator to sort images based on the z position of the transfromComponent
     private OrthographicCamera cam; // a reference to our camera
@@ -59,7 +59,7 @@ public class RenderingSystem extends SortedIteratingSystem {
     private Texture lvl1background;
 
 	public RenderingSystem(SpriteBatch batch) {
-        // gets all entities with a TransofmComponent and TextureComponent
+        // sorgt dafür das nur entitys mit TransofmComponent und TextureComponent genutzt werden
         super(Family.all(TransformComponent.class, TextureComponent.class).get(), new ZComparator());
 
         //creates out componentMappers
@@ -92,7 +92,7 @@ public class RenderingSystem extends SortedIteratingSystem {
 
         batch.draw(lvl1background, 0, 0, 192, 108);
 
-        // loop through each entity in our render queue
+        // loop der jede entity der queue durchgeht
         for (Entity entity : renderQueue) {
             TextureComponent tex = textureM.get(entity);
             TransformComponent t = transformM.get(entity);

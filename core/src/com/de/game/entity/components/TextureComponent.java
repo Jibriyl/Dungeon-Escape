@@ -10,11 +10,14 @@ public class TextureComponent implements Component {
 
     public TextureAtlas getAtlas() {
         return atlas;
-    }public void setAtlas(TextureAtlas atlas) {
+    }
+    public void setAtlas(TextureAtlas atlas) {
         this.atlas = atlas;
-    }public TextureRegion getRegion() {
+    }
+    public TextureRegion getRegion() {
         return region;
-    }public void setRegion(TextureRegion region) {
+    }
+    public void setRegion(TextureRegion region) {
         this.region = region;
     }
 }

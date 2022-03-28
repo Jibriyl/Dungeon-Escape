@@ -17,14 +17,14 @@ import com.de.game.entity.components.TypeComponent;
 
 public class Enemymanager {
 
-    private TextureAtlas texture;
+    private TextureAtlas slimetex;
     private PooledEngine engine;
     private BodyFactory bodyFactory;
 
     public Enemymanager(BodyFactory bodyFactory, PooledEngine engine, Main game){
         this.engine = engine;
         this.bodyFactory = bodyFactory;
-        texture = game.assetManager.manager.get("Output/slime.atlas");
+        slimetex = game.assetManager.manager.get("Output/slime.atlas");
 
     }
 
@@ -33,7 +33,7 @@ public class Enemymanager {
         Entity entity = engine.createEntity();
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
         TransformComponent position = engine.createComponent(TransformComponent.class);
-        TextureComponent texturecom = engine.createComponent(TextureComponent.class);
+        TextureComponent texture = engine.createComponent(TextureComponent.class);
         StatComponent stats = engine.createComponent(StatComponent.class);
         CollisionComponent colComp = engine.createComponent(CollisionComponent.class);
         TypeComponent type = engine.createComponent(TypeComponent.class);
@@ -46,8 +46,10 @@ public class Enemymanager {
         //Setzen der Playerstats Damage, Leben, Maxleben, Speed, Rüstung
         stats.setStats(10, 50, 50, 1, 20);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
-        position.position.set(7,16,0);
-        texturecom.setAtlas(texture);
+        position.position.set(5,5,0);
+        texture.setAtlas(slimetex);
+        texture.setRegion(texture.getAtlas().findRegion("gound"));
+
         type.setType(TypeComponent.ENEMY);
         stateCom.setstate(StateComponent.STATE_NORMAL); 
         b2dbody.getBody().setUserData(entity);
@@ -55,11 +57,11 @@ public class Enemymanager {
         //Alle Kompenenten des Spieler der Spieler Entity hinzufügen
         entity.add(b2dbody);
         entity.add(position);
+        //entity.add(texture);
         entity.add(stats);
         entity.add(colComp);
         entity.add(type);
         entity.add(stateCom);
-        //entity.add(texturecom);
      
         //Die Entity in die engine adden
         engine.addEntity(entity);
