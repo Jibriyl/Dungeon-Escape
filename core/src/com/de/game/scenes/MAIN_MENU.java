@@ -3,6 +3,7 @@ package com.de.game.scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.de.game.Main;
 import com.de.game.inputs.KeyboardController;
@@ -11,11 +12,27 @@ public class MAIN_MENU extends ScreenAdapter{
 
     Main game;
     private KeyboardController controller;
+    private Texture background;
+    private float cd;
+    private int auswahl;
+    private Texture rahmen;
+    private Texture start;
+    private Texture kommtbald;
+    private Texture verlassen;
 
     //Import des Assets und nötigen Objekte in den MAIN_MENU Screen
     public MAIN_MENU(Main game){
         this.game = game;
         controller = new KeyboardController();
+
+        background = game.assetManager.manager.get("Input/main/Backrond_hauptmenu_richtig.png");
+        rahmen = game.assetManager.manager.get("Input/main/Rahmen.png");
+        start = game.assetManager.manager.get("Input/main/Start.png");
+        kommtbald = game.assetManager.manager.get("Input/main/kommt_bald.png");
+        verlassen = game.assetManager.manager.get("Input/main/Verlassen.png");
+        cd = 0;
+        auswahl = 0;
+        
 
         //Heir werden die Assets geladen
 
@@ -33,12 +50,57 @@ public class MAIN_MENU extends ScreenAdapter{
         game.batch.begin();
         ScreenUtils.clear(0, 0, 0, 1);
 
+           //Screenlogic
+           if (cd <= 0){
+            if (controller.up){
+                auswahl -= 1;
+                cd = 0.5f;
+            }
+            if (controller.down){
+                auswahl +=1;
+                cd = 0.5f;
+            }
+            if (auswahl < 0){
+                auswahl = 0;
+            }
+            if (auswahl > 2){
+                auswahl = 2;
+            }
+        }
+        else {
+            cd -= delta;
+        }
+
+        game.batch.draw(background, 0, 0, 1920, 1080);
+
         //Hier werden die Assets gemalt 
+        if (auswahl == 0){
+            game.batch.draw(rahmen, 0, 0, 704, 172);
+        }
+        else if (auswahl == 1){
+            game.batch.draw(rahmen, 0, 0, 704, 172);
+        }
+        else if (auswahl == 2){
+            game.batch.draw(rahmen, 0, 0, 704, 172);
+        }
+
+        // Buttens
+        game.batch.draw(start, 0, 0, 674, 140);
+
+        game.batch.draw(kommtbald, 0, 0, 674, 140);
+
+        game.batch.draw(verlassen, 0, 0, 674, 140);
+
+        game.batch.end();
+
+
+
+
 
         //Beenden des laden
         game.batch.end();
 
-        game.screenset("LVL_1");
+        
     }
 
 
