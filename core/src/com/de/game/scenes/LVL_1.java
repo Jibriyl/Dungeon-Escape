@@ -9,7 +9,7 @@ public class LVL_1 extends LVL_0{
     protected Texture lvl1background;
 
     public LVL_1 (Main game, String type){
-        super(game, true);
+        super(game, true, type);
 
         //Laden der Texturen
         lvl1background = game.assetManager.manager.get("Input/game/lvl1background.png");

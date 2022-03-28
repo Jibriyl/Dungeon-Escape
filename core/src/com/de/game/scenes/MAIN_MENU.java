@@ -102,10 +102,10 @@ public class MAIN_MENU extends ScreenAdapter{
 
         if (controller.enter){
             if (auswahl == 0){
-                game.screenset("CHARACTER_SELECT");
+                game.screenset("CHARACTER_SELECT", "");
             }
             else if (auswahl == 1){
-                game.screenset("GAME_OVER");
+                //game.screenset("GAME_OVER");
             }
             else if (auswahl == 2){
                 System.exit(0);

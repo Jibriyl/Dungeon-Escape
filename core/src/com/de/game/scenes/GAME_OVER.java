@@ -16,12 +16,13 @@ public class GAME_OVER extends ScreenAdapter{
     private int auswahl;
     private KeyboardController controller;
     private float cd;
+    private String chartype;
     
 
-    public GAME_OVER (Main game){
+    public GAME_OVER (Main game, String chartype){
         this.game = game;
         controller = new KeyboardController();
-
+        this.chartype = chartype;
         gameoverbackground = game.assetManager.manager.get("Input/game/Gameoverbackground.png");
         gameover = game.assetManager.manager.get("Input/game/Gameover.png");
         cd = 0;
@@ -80,10 +81,10 @@ public class GAME_OVER extends ScreenAdapter{
 
         if (controller.enter){
             if (auswahl == 0){
-                game.screenset("LVL_1");
+                game.screenset("LVL_1", chartype);
             }
             else if (auswahl == 1){
-                game.screenset("MAIN_MENU");
+                game.screenset("MAIN_MENU", chartype);
             }
             else if (auswahl == 2){
                 System.exit(0);

@@ -30,7 +30,7 @@ public class Main extends Game {
         assetManager.manager.finishLoading();
 
         //Setzen des Start Screens
-        screenset("MAIN_MENU");        
+        screenset("LVL_1", "player1");        
     }
 
     @Override
@@ -39,15 +39,15 @@ public class Main extends Game {
         batch.dispose();
     }
 
-    public void screenset(String screen){
+    public void screenset(String screen, String type){
         if(screen == "LVL_1"){
-            setScreen(new LVL_1(this, "player1"));
+            setScreen(new LVL_1(this, type));
         }
         else if(screen == "MAIN_MENU"){
             setScreen(new MAIN_MENU(this));
         }
         else if(screen == "GAME_OVER"){
-            setScreen(new GAME_OVER(this));
+            setScreen(new GAME_OVER(this, type));
         }
         else if(screen == "CHARACTER_SELECT"){
             setScreen(new CHARACTER_SELECT(this));

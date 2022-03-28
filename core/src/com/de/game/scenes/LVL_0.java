@@ -40,7 +40,7 @@ public class LVL_0 extends ScreenAdapter{
     protected Enemymanager em;
     protected Scenerymanager sm;
 
-    protected LVL_0 (Main game,boolean debug){
+    protected LVL_0 (Main game, boolean debug, String chartype){
         boolean debugmode = debug;
         this.game = game;
         controller = new KeyboardController();
@@ -68,7 +68,7 @@ public class LVL_0 extends ScreenAdapter{
         engine.addSystem(new CollisionSystem());
         engine.addSystem(renderingSystem);
         engine.addSystem(new SimpleEnemyController());
-        engine.addSystem(new LifeSystem(world, game, engine));
+        engine.addSystem(new LifeSystem(world, game, engine, chartype));
         if(debugmode){
             engine.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
         }
