@@ -24,6 +24,8 @@ public class B2dAssetManager {
     public final String mainRahmen = "Input/main/Rahmen.png";
     public final String mainStart = "Input/main/Start.png";
     public final String mainVerlassen = "Input/main/Verlassen.png";
+    public final String mainBackground = "Input/main/Backrond_hauptmenu_richtig.png";
+
 
 
     public void queueAddImages(){
@@ -43,5 +45,6 @@ public class B2dAssetManager {
         manager.load(mainRahmen, Texture.class);
         manager.load(mainStart, Texture.class);
         manager.load(mainVerlassen, Texture.class);
+        manager.load(mainBackground, Texture.class);
     }
 }
