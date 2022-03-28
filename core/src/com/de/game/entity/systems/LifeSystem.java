@@ -42,6 +42,7 @@ public class LifeSystem extends IteratingSystem{
         if(stats.getLeben() <= 0 && type.getType() == TypeComponent.PLAYER){
             main.screenset("GAME_OVER");
         }
+
         //Wenn das Leben einer Gegners auf 0 fällt wird er gelöscht
         if(stats.getLeben() <= 0 && type.getType() == TypeComponent.ENEMY){
             //Löschen der Gegner entity

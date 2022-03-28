@@ -18,6 +18,7 @@ public class AnimationSystem extends IteratingSystem {
     float t2;
     float t3;
     float t4;
+    float t5;
 
 	public AnimationSystem(){
         super(Family.all(TextureComponent.class, StateComponent.class).get());
@@ -29,6 +30,7 @@ public class AnimationSystem extends IteratingSystem {
         t2 = 0;
         t3 = 0;
         t4 = 0;
+        t5 = 0;
     }
 
     @Override
@@ -132,9 +134,26 @@ public class AnimationSystem extends IteratingSystem {
                 }
             }
         }
-        else if(type.getType() == TypeComponent.SLIME){
-            
+        else if(type.getType() == TypeComponent.ENEMY){
+            if(t5 <= 0.125){
+                texture.setRegion(texture.getAtlas().findRegion("gound"));
+                t5 += deltaTime;
+            }
+            else if(t5 <= 0.250){
+                texture.setRegion(texture.getAtlas().findRegion("jump1"));
+                t5 += deltaTime;
+            }
+            else if(t5 <= 0.375){
+                texture.setRegion(texture.getAtlas().findRegion("jump2"));
+                t5 += deltaTime;
+            }
+            else if(t5 <= 0.5){
+                texture.setRegion(texture.getAtlas().findRegion("jump1"));
+                t5 += deltaTime;
+            }
+            if(t5 < 0.5){
+                t5 = 0;
+            }
         }
-
     }
 }
