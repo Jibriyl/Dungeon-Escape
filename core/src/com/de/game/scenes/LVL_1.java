@@ -8,7 +8,7 @@ public class LVL_1 extends LVL_0{
     Main game;
     protected Texture lvl1background;
 
-    public LVL_1 (Main game){
+    public LVL_1 (Main game, String type){
         super(game, true);
 
         //Laden der Texturen
@@ -17,7 +17,7 @@ public class LVL_1 extends LVL_0{
 
         //Erstellen der Objekte im Level
         //Spieler
-        pm.createPlayer("player1", 100, 50);
+        pm.createPlayer(type, 100, 50);
 
         //Gegner
         em.createbasicSimpleEnemy(30,50);

@@ -38,7 +38,7 @@ public class Main extends Game {
 
     public void screenset(String screen){
         if(screen == "LVL_1"){
-            setScreen(new LVL_1(this));
+            setScreen(new LVL_1(this, "player1"));
         }
         else if(screen == "MAIN_MENU"){
             setScreen(new MAIN_MENU(this));

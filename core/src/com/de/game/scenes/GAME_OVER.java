@@ -62,6 +62,8 @@ public class GAME_OVER extends ScreenAdapter{
             cd -= delta;
         }
 
+        game.batch.draw(gameoverbackground, 0, 0, 1920, 1080);
+        game.batch.draw(gameover, 760, 760, 400, 140);
 
         //Laden der Assets
         if (auswahl == 0){
@@ -73,8 +75,9 @@ public class GAME_OVER extends ScreenAdapter{
         else if (auswahl == 2){
             System.out.println("Exit");
         }
-        game.batch.draw(gameoverbackground, 0, 0, 1920, 1080);
-        game.batch.draw(gameover, 760, 760, 400, 140);
+
+        
+
         game.batch.end();
 
         if (controller.enter){
@@ -89,5 +92,4 @@ public class GAME_OVER extends ScreenAdapter{
             }
         }
     }
-
 }
