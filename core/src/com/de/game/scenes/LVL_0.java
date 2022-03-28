@@ -49,10 +49,6 @@ public class LVL_0 extends ScreenAdapter{
         bodyFactory = new BodyFactory(world);
         cam = new OrthographicCamera(192,108);
 
-
-        game.assetManager.queueAddImages();
-        game.assetManager.manager.finishLoading();
-
         sb = new SpriteBatch();
         //Erstellen des Rendersystems
         renderingSystem = new RenderingSystem(sb);

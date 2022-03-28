@@ -26,6 +26,9 @@ public class Main extends Game {
         batch = new SpriteBatch();
         font = new BitmapFont();
         
+        assetManager.queueAddImages();
+        assetManager.manager.finishLoading();
+
         //Setzen des Start Screens
         screenset("MAIN_MENU");        
     }

@@ -12,6 +12,7 @@ public class B2dAssetManager {
 	public final String gameoverbackground = "Input/game/Gameoverbackground.png";
     public final String gameover = "Input/game/Gameover.png";
     public final String player = "Output/joshuachar1.atlas";
+    public final String slime = "Output/slime.atlas";
     //Player auswahl texturen
     public final String charback = "Input/charauswahl/Back.png";
     public final String charbackrahmen = "Input/charauswahl/Backramen.png";
@@ -25,7 +26,6 @@ public class B2dAssetManager {
     public final String mainStart = "Input/main/Start.png";
     public final String mainVerlassen = "Input/main/Verlassen.png";
     public final String mainBackground = "Input/main/Backrond_hauptmenu_richtig.png";
-
 
 
     public void queueAddImages(){
@@ -46,5 +46,6 @@ public class B2dAssetManager {
         manager.load(mainStart, Texture.class);
         manager.load(mainVerlassen, Texture.class);
         manager.load(mainBackground, Texture.class);
+        manager.load(slime, TextureAtlas.class);
     }
 }
