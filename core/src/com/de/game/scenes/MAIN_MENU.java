@@ -100,7 +100,17 @@ public class MAIN_MENU extends ScreenAdapter{
         //Beenden des laden
         game.batch.end();
 
-        
+        if (controller.enter){
+            if (auswahl == 0){
+                game.screenset("CHARACTER_SELECT");
+            }
+            else if (auswahl == 1){
+                //game.screenset("Kommt Bald");
+            }
+            else if (auswahl == 2){
+                System.exit(0);
+            }
+        }
     }
 
 
