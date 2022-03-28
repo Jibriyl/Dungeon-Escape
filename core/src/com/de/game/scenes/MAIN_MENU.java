@@ -75,23 +75,23 @@ public class MAIN_MENU extends ScreenAdapter{
 
         //Hier werden die Assets gemalt 
         if (auswahl == 0){
-            game.batch.draw(rahmen, 0, 0, 704, 172);
+            game.batch.draw(rahmen, 618, 750, 704, 172);
         }
         else if (auswahl == 1){
-            game.batch.draw(rahmen, 0, 0, 704, 172);
+            game.batch.draw(rahmen, 618, 500, 704, 172);
         }
         else if (auswahl == 2){
-            game.batch.draw(rahmen, 0, 0, 704, 172);
+            game.batch.draw(rahmen, 618, 250, 704, 172);
         }
 
         // Buttens
-        game.batch.draw(start, 0, 0, 674, 140);
+        game.batch.draw(start, 633, 766, 674, 140);
 
-        game.batch.draw(kommtbald, 0, 0, 674, 140);
+        game.batch.draw(kommtbald, 633, 516, 674, 140);
 
-        game.batch.draw(verlassen, 0, 0, 674, 140);
+        game.batch.draw(verlassen, 633, 266, 674, 140);
 
-        game.batch.end();
+        
 
 
 
