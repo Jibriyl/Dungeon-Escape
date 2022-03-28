@@ -132,7 +132,7 @@ public class AnimationSystem extends IteratingSystem {
                 }
             }
         }
-        else if(type.getType() == TypeComponent)
+        //else if(type.getType() == TypeComponent)
 
     }
 }
