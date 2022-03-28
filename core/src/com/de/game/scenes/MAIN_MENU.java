@@ -105,7 +105,7 @@ public class MAIN_MENU extends ScreenAdapter{
                 game.screenset("CHARACTER_SELECT");
             }
             else if (auswahl == 1){
-                //game.screenset("Kommt Bald");
+                game.screenset("GAME_OVER");
             }
             else if (auswahl == 2){
                 System.exit(0);
