@@ -76,8 +76,6 @@ public class GAME_OVER extends ScreenAdapter{
             System.out.println("Exit");
         }
 
-        
-
         game.batch.end();
 
         if (controller.enter){

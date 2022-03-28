@@ -48,7 +48,6 @@ public class Enemymanager {
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
         position.position.set(7,16,0);
         texturecom.setAtlas(texture);
-        texturecom.setRegion(texturecom.getAtlas().findRegion("gound"));
         type.setType(TypeComponent.ENEMY);
         stateCom.setstate(StateComponent.STATE_NORMAL); 
         b2dbody.getBody().setUserData(entity);
