@@ -3,6 +3,7 @@ package com.de.game.entity.components;
 import com.badlogic.ashley.core.Component;
 
 public class StateComponent implements Component {
+    //Speichert die Aktuelle State einer Entität
 	public static final int STATE_NORMAL = 0;
     public static final int STATE_MOVING_LEFT = 1;
     public static final int STATE_MOVING_RIGHT = 2;
@@ -17,10 +18,10 @@ public class StateComponent implements Component {
     public void setstate(int newState){
         state = newState;
     }
-
     public int getstate(){
         return state;
     }
+    //Speichert die letzte State einer entität, wird bei der spieler bewegung genutzt
     public String getLaststate() {
         return laststate;
     }

@@ -5,14 +5,16 @@ import com.badlogic.gdx.Input.Keys;
 
 public class KeyboardController implements InputProcessor{
 
-    //Maybe diese noch private setzen und mit getmethode zugänglich machen
+    //Klasse die feststellt welcher key auf der tastatur gedrückt wurde und speichert damit andere klassen darauf zu greifen können
     public boolean left,right,up,down,space,shift,enter;
 
     @Override
+    //Erkennt wenn Button gedrückt wird
     public boolean keyDown(int keycode) {
+        //Variable die Speichert ob ein button gedrückt worden ist
         boolean keyProcessed = false;
 
-        switch (keycode) // switch code base on the variable keycode
+        switch (keycode)
         {
             case Keys.A:
                 left = true;
@@ -44,13 +46,14 @@ public class KeyboardController implements InputProcessor{
             keyProcessed = true;
         }
     
-    return keyProcessed;    //  return our keyProcessed flag
+    return keyProcessed;    
     }
 
     @Override
+    //Erkennt wenn Button losgelassen wird
     public boolean keyUp(int keycode) {
         boolean keyProcessed = false;
-        switch (keycode) // switch code base on the variable keycode
+        switch (keycode) 
         {
             case Keys.A: 
                 left = false;
@@ -84,6 +87,7 @@ public class KeyboardController implements InputProcessor{
     return keyProcessed;    //  return our peyProcessed flag
     }
 
+    //Diese autogenerierte Methoden werden nicht genutzt
     @Override
     public boolean keyTyped(char character) {
         // TODO Auto-generated method stub

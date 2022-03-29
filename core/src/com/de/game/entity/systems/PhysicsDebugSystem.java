@@ -23,6 +23,7 @@ public class PhysicsDebugSystem extends IteratingSystem {
 
     @Override
     public void update(float deltaTime) {
+        //Zeigt die debug kamera an, mit der man die Bodys der Entitäten sehen kann
         super.update(deltaTime);
         debugRenderer.render(world, camera.combined);
     }

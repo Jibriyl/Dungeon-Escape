@@ -7,7 +7,7 @@ public class B2dBodyComponent implements Component{
 	private Body body;
 	private float width;
 	private float height;
-
+ 	//Wird genutzt um die textur der Entität die richtige größe zu geben
 	public void setdimension(float width, float height){
 		this.height = height;
 		this.width = width;
@@ -18,9 +18,6 @@ public class B2dBodyComponent implements Component{
 	}
 	public float getHeight(){
 		return this.height;
-	}
-	public void remove(){
-		body = null;
 	}
 	public Body getBody() {
 		return body;

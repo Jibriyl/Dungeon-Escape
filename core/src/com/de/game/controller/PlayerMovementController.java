@@ -33,6 +33,7 @@ public class PlayerMovementController extends IteratingSystem{
 		//stellt fest ob es sich um einen play handelt 
 		if (type.getType() == TypeComponent.PLAYER){
 			StateComponent state = sm.get(entity);
+			//Spieler kann sich nur bewegen wenn er nicht angreift
 			if(state.getstate() != StateComponent.STATE_IN_HIT){
 				B2dBodyComponent b2body = bodm.get(entity);
 				StatComponent player = pm.get(entity);

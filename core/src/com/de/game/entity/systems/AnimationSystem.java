@@ -38,9 +38,13 @@ public class AnimationSystem extends IteratingSystem {
         StateComponent state = sm.get(entity);
         TextureComponent texture = tm.get(entity);
         TypeComponent type = typem.get(entity);
+        //Prüft ob es sich um einen spieler handelt
         if(type.getType() == TypeComponent.PLAYER){
+            //Setzt dem entsprechend der richtung in die der spieler schaut die passende Textur
             if(state.getstate() == StateComponent.STATE_MOVING_DOWN){
+                //Spielt die frames für eine Richtung ab, welcher abgespielt wird, wird von dem timer entschieden
                 if(t1 <= 0.125){
+                    //Setzt alle timer der anderen animationen auf 0
                     t2 = 0;
                     t3 = 0;
                     t4 = 0;
@@ -134,6 +138,7 @@ public class AnimationSystem extends IteratingSystem {
                 }
             }
         }
+        //Gegner Lauf animation, bei dem Gegner wird in egal welche richtung die gleiche animation abgespielt, arbeitet auch wie beim spieler mit einem timer zu frame bestimmung
         else if(type.getType() == TypeComponent.ENEMY){
             if(t5 <= 1){
                 texture.setRegion(texture.getAtlas().findRegion("gound"));

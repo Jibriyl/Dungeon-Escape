@@ -60,6 +60,7 @@ public class LifeSystem extends IteratingSystem{
         if (type.getType() == TypeComponent.ENEMY){
             win = 0;
         }
+        //Wenn kein gegner mehr lebt wird zum Winscreen gewechselt
         if (win > 1){
             main.screenset("WIN_SCREEN","");
         }

@@ -11,25 +11,21 @@ import com.de.game.inputs.KeyboardController;
 public class WIN_SCREEN extends ScreenAdapter{
     
     Main game;
-    private Texture gameoverbackground;
-    private Texture gameover;
-    private int auswahl;
+    private Texture background;
     private KeyboardController controller;
-    private float cd;
     
 
     public WIN_SCREEN (Main game){
         this.game = game;
+        //Deklariert den Controller, nutzt die Tastatur
         controller = new KeyboardController();
-
-        gameoverbackground = game.assetManager.manager.get("Input/game/Gameoverbackground.png");
-        gameover = game.assetManager.manager.get("Input/game/Gameover.png");
-        cd = 0;
-        auswahl = 0;
+        //Lädt den Hintergrund
+        background = game.assetManager.manager.get("Input/game/Gameoverbackground.png");
     }
 
     @Override
     public void show(){
+        //Setzen der Tastatur als Kontroller
         Gdx.input.setInputProcessor(controller);
     }
 
@@ -41,11 +37,11 @@ public class WIN_SCREEN extends ScreenAdapter{
         game.batch.begin();
         ScreenUtils.clear(0, 0, 0, 1);
 
-        //Laden der Assets
-        game.batch.draw(gameoverbackground, 0, 0, 1920, 1080);
-        game.batch.draw(gameover, 760, 760, 400, 140);
+        //Laden/Zeichnen der Assets
+        game.batch.draw(background, 0, 0, 1920, 1080);
         game.batch.end();
 
+        //Wenn enter gedrückt wird, wird das spiel beendet
         if (controller.enter){
             System.exit(0);
         }

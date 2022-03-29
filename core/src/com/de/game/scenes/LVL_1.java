@@ -10,7 +10,7 @@ public class LVL_1 extends LVL_0{
 
     public LVL_1 (Main game, String type){
         //Debug modus zeigt body der objekte im spiel an und kollisionen in der konsole / Debug ist die mittlere übergabe variable des super konstruktors
-        super(game, true, type);
+        super(game, false, type);
 
         //Laden der Texturen
         lvl1background = game.assetManager.manager.get("Input/game/lvl1background.png");

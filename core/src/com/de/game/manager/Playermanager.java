@@ -17,33 +17,35 @@ import com.de.game.entity.components.TypeComponent;
 
 public class Playermanager {
 
-    private TextureAtlas testplayer;
     private PooledEngine engine;
     private BodyFactory bodyFactory;
+    private TextureAtlas joshuaplayer;
+    private TextureAtlas maxplayer;
 
     public Playermanager(BodyFactory bodyFactory, PooledEngine engine, Main game){
         this.engine = engine;
         this.bodyFactory = bodyFactory;
         //Importieren aller benutzten Charakter texturen
         //Alle texturen eines Charakters sind in einem Atlas gespeichert
-        testplayer = game.assetManager.manager.get("Output/joshuachar1.atlas");
+        joshuaplayer = game.assetManager.manager.get("Output/joshuachar1.atlas");
+        maxplayer= game.assetManager.manager.get("Output/Maxchar1.atlas");
     }
 
     //Funktion zur auswahl welcher player selected wurde
     public void createPlayer(String type, float x, float y){
         if(type == "player1"){
-            createplayer1(x, y);
+            createplayer1(x, y, joshuaplayer, 7, 16);
         }
         else if(type == "player2"){
-
+            createplayer1(x, y, maxplayer, 8, 17);
         }
         else if(type == "player3"){
             
         }
     }
 
-    private void createplayer1(float x, float y){
-        // Erstellen aller Entitys für den Player
+    private void createplayer1(float x, float y, TextureAtlas testplayer, int width, int heigth){
+        //Erstellen aller Entitys für den Player
         Entity entity = engine.createEntity();
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
         TransformComponent position = engine.createComponent(TransformComponent.class);
@@ -53,10 +55,10 @@ public class Playermanager {
         TypeComponent type = engine.createComponent(TypeComponent.class);
         StateComponent stateCom = engine.createComponent(StateComponent.class);
      
-        // Erstellen des player bodys
+        //Erstellen des player bodys
         b2dbody.setBody(bodyFactory.makeBox(x, y, 7, 16, BodyFactory.PLAYER, BodyType.DynamicBody));
         //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
-        b2dbody.setdimension(7, 16);
+        b2dbody.setdimension(width, heigth);
         //Setzen der Playerstats Damage, Leben, Maxleben, Speed, Rüstung
         stats.setStats(10, 100, 100, 1000, 20);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll

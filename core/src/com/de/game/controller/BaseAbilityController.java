@@ -115,16 +115,16 @@ public class BaseAbilityController extends IteratingSystem{
     //Bestimmt in welche richtung der spieler dasht
     if (state.getLaststate() == "DOWN"){
       //Applyed eine große kraft auf den spieler körper, für einen tick des games
-      body.getBody().applyForceToCenter(0, -100000f, true);
+      body.getBody().applyForceToCenter(0, -300000f, true);
     }
     else if(state.getLaststate() == "UP"){
-      body.getBody().applyForceToCenter(0, 100000f, true);
+      body.getBody().applyForceToCenter(0, 300000f, true);
     }
     else if(state.getLaststate() == "LEFT"){
-      body.getBody().applyForceToCenter(-100000f, 0, true);
+      body.getBody().applyForceToCenter(-300000f, 0, true);
     }
     else{ //Right
-      body.getBody().applyForceToCenter(100000f, 0, true);
+      body.getBody().applyForceToCenter(300000f, 0, true);
     }
   }
 
@@ -163,7 +163,7 @@ public class BaseAbilityController extends IteratingSystem{
       y = posi.position.y;
     }
 
-    //Erstellen aller Komponenten für die Entität
+    //Erstellen aller Komponenten für die Attacken-Entität
     Entity entity = engine.createEntity();
     B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
     TransformComponent position = engine.createComponent(TransformComponent.class);

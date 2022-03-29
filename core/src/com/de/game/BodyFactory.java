@@ -27,7 +27,7 @@ public class BodyFactory {
     static public FixtureDef makeFixture(int material, Shape shape){
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
-            
+        //Vorgefertigte materialen für den body einer entity
         switch(material){
         case 0:
           fixtureDef.density = 7f;
@@ -63,15 +63,16 @@ public class BodyFactory {
     }
 
     public Body makeCircle(float posx, float posy, float diameter, int material, BodyType bodyType, boolean fixedRotation, float damp){
-        // create a definition
+        //Erstellt einen Circlebody
         BodyDef boxBodyDef = new BodyDef();
         boxBodyDef.type = bodyType;
         boxBodyDef.linearDamping = damp;
+        //Setzt position des Bodys
         boxBodyDef.position.x = posx;
         boxBodyDef.position.y = posy;
         boxBodyDef.fixedRotation = fixedRotation;
             
-        //create the body to attach said definition
+        //fügt den body in die welt ein
         Body boxBody = world.createBody(boxBodyDef);
         CircleShape circleShape = new CircleShape();
         circleShape.setRadius(diameter/2);
@@ -79,12 +80,13 @@ public class BodyFactory {
         circleShape.dispose();
         return boxBody;
     }
+    //Abkürzung für den makecircle, kann genutzt werden wenn es sich um einen Dynamic body handelt und die rotation fixiert ist
     public Body makeCircle(float posx, float posy, float diameter, int material , float damp){
         return makeCircle( posx,  posy,  diameter,  material,  BodyType.DynamicBody, true, damp);
     }
 
     public Body makeBox(float posx, float posy, float lenght, float height, int material, BodyType bodyType, boolean fixedRotation){
-        // create a definition
+        //Erstellt box body
         BodyDef boxBodyDef = new BodyDef();
         boxBodyDef.type = bodyType;
         boxBodyDef.linearDamping = 9f;
@@ -92,7 +94,6 @@ public class BodyFactory {
         boxBodyDef.position.y = posy;
         boxBodyDef.fixedRotation = fixedRotation;
             
-        //create the body to attach said definition
         Body boxBody = world.createBody(boxBodyDef);
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(lenght/2, height/2);
@@ -105,6 +106,7 @@ public class BodyFactory {
     }
 
     public Body makePolygonShapeBody(Vector2[] vertices, float posx, float posy, int material, BodyType bodyType){
+        //Würde genutzt werden um eine Polygon shape zu erstellen, also eine komplexe form ohne einbuchtungen
         BodyDef boxBodyDef = new BodyDef();
         boxBodyDef.type = bodyType;
         boxBodyDef.linearDamping = 4f;
@@ -119,7 +121,7 @@ public class BodyFactory {
             
         return boxBody;
     }
-    
+    //Macht einen Body zu einem sensor der keine Kollision mit anderen Bodys hat
     public void makeAllFixturesSensors(Body bod){
         for(Fixture fix :bod.getFixtureList()){
             fix.setSensor(true);

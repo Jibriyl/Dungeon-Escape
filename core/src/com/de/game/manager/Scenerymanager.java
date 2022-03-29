@@ -16,13 +16,14 @@ public class Scenerymanager {
         private PooledEngine engine;
         private BodyFactory bodyFactory;
         private Main game;
-    
+        //Gleiche Funktion wie beim Charakter oder enemy manager
+        //Scenery hat weniger Componenten da sie keine stats, state oder bewegung haben
         public Scenerymanager(BodyFactory bodyFactory, PooledEngine engine, Main game){
             this.engine = engine;
             this.bodyFactory = bodyFactory;
             this.game = game;
         }
-        
+        //Erstellen einer Wand mit Textur
     public void createWall(float x, float y, float width, float height, String path, String name){
         textures = game.assetManager.manager.get(path);
         Entity entity = engine.createEntity();
@@ -41,7 +42,7 @@ public class Scenerymanager {
         
         engine.addEntity(entity);
     }
-
+    //Erstellen einer Wand ohne Textur
     public void createWall(float x, float y, float width, float height){
         Entity entity = engine.createEntity();
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);

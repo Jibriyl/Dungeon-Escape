@@ -24,12 +24,13 @@ public class Enemymanager {
     public Enemymanager(BodyFactory bodyFactory, PooledEngine engine, Main game){
         this.engine = engine;
         this.bodyFactory = bodyFactory;
+        //Lädt die textur in die Klasse
         slimetex = game.assetManager.manager.get("Output/slime.atlas");
 
     }
 
     public void createbasicSimpleEnemy(float x, float y){
-        // Create the Entity and all the components that will go in the entity
+        //Erstellt alle komponenten für eine Entität
         Entity entity = engine.createEntity();
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
         TransformComponent position = engine.createComponent(TransformComponent.class);
@@ -39,7 +40,6 @@ public class Enemymanager {
         TypeComponent type = engine.createComponent(TypeComponent.class);
         StateComponent stateCom = engine.createComponent(StateComponent.class);
      
-        // create the data for the components and add them to the components
         b2dbody.setBody(bodyFactory.makeCircle(x, y, 5, BodyFactory.PLAYER, 4f));
         //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
         b2dbody.setdimension(5, 5);

@@ -1,0 +1,89 @@
+Maxchar1.png
+size: 65, 1560
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+back_standing
+  rotate: false
+  xy: 0, 0
+  size: 65, 130
+  orig: 65, 130
+  offset: 0, 0
+  index: -1
+back_waltking_a
+  rotate: false
+  xy: 0, 130
+  size: 65, 130
+  orig: 65, 130
+  offset: 0, 0
+  index: -1
+back_waltking_b
+  rotate: false
+  xy: 0, 260
+  size: 65, 130
+  orig: 65, 130
+  offset: 0, 0
+  index: -1
+front_standing
+  rotate: false
+  xy: 0, 390
+  size: 65, 130
+  orig: 65, 130
+  offset: 0, 0
+  index: -1
+front_waltking_a
+  rotate: false
+  xy: 0, 520
+  size: 65, 130
+  orig: 65, 130
+  offset: 0, 0
+  index: -1
+front_waltking_b
+  rotate: false
+  xy: 0, 650
+  size: 65, 130
+  orig: 65, 130
+  offset: 0, 0
+  index: -1
+left_standing
+  rotate: false
+  xy: 0, 780
+  size: 65, 130
+  orig: 65, 130
+  offset: 0, 0
+  index: -1
+left_waltking_a
+  rotate: false
+  xy: 0, 910
+  size: 65, 130
+  orig: 65, 130
+  offset: 0, 0
+  index: -1
+left_waltking_b
+  rotate: false
+  xy: 0, 1040
+  size: 65, 130
+  orig: 65, 130
+  offset: 0, 0
+  index: -1
+right_standing
+  rotate: false
+  xy: 0, 1170
+  size: 65, 130
+  orig: 65, 130
+  offset: 0, 0
+  index: -1
+right_waltking_a
+  rotate: false
+  xy: 0, 1300
+  size: 65, 130
+  orig: 65, 130
+  offset: 0, 0
+  index: -1
+right_waltking_b
+  rotate: false
+  xy: 0, 1430
+  size: 65, 130
+  orig: 65, 130
+  offset: 0, 0
+  index: -1

@@ -32,6 +32,7 @@ public class B2dContactListener implements ContactListener {
 
 		//Wenn es sich um einen Entity handelt, wird ausgeführt
 		if(fa.getBody().getUserData() instanceof Entity){
+			//Übergibt die entitäten an die entitycollision methode
 			Entity ent = (Entity) fa.getBody().getUserData();
 			entityCollision(ent,fb);
 		}
@@ -43,7 +44,7 @@ public class B2dContactListener implements ContactListener {
 	}
 
 	private void entityCollision(Entity ent, Fixture fb) {
-		//
+		//Setzt bei Collision die entity als collisionsentity in der Collisionscomponent
 		if(fb.getBody().getUserData() instanceof Entity){
 			Entity colEnt = (Entity) fb.getBody().getUserData();
 			

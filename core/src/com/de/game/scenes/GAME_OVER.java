@@ -22,10 +22,14 @@ public class GAME_OVER extends ScreenAdapter{
     public GAME_OVER (Main game, String chartype){
         this.game = game;
         controller = new KeyboardController();
+        //Speichert den ausgewählten charakter typ für die retry funktion
         this.chartype = chartype;
+        //Laden der Assets
         gameoverbackground = game.assetManager.manager.get("Input/game/Gameoverbackground.png");
         gameover = game.assetManager.manager.get("Input/game/Gameover.png");
+        //Speichert den Cooldown damit der Button nicht einmal pro tick geändert werden kann
         cd = 0;
+        //Speichert welcher Button aktuell ausgewählt ist
         auswahl = 0;
     }
 
@@ -44,6 +48,8 @@ public class GAME_OVER extends ScreenAdapter{
 
         //Screenlogic
         if (cd <= 0){
+            //Entscheidet darüber welcher Button ausgewählt ist, kann mit Up, Down geändert werden
+            //Die auswahl des Buttons wird in dern auwahl variable gespeichert, anhand weöcher button ausgewähl ist wird enschieden um welchen der rahmen abgebildet werden muss
             if (controller.up){
                 auswahl -= 1;
                 cd = 0.2f;
@@ -60,6 +66,7 @@ public class GAME_OVER extends ScreenAdapter{
             }
         }
         else {
+            //Reduziert die zeit für den Button cooldown
             cd -= delta;
         }
 
@@ -76,14 +83,18 @@ public class GAME_OVER extends ScreenAdapter{
 
         game.batch.end();
 
+        //Wenn Enter gedrückt wird, wird anhand der auswahlt entschieden welche aktion ausgeführt wird
         if (controller.enter){
             if (auswahl == 0){
+                //Retry game
                 game.screenset("LVL_1", chartype);
             }
             else if (auswahl == 1){
+                //Zurück zum hauptmenu
                 game.screenset("MAIN_MENU", chartype);
             }
             else if (auswahl == 2){
+                //Spiel verlassen
                 System.exit(0);
             }
         }

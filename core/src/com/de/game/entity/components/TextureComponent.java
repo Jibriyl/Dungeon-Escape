@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class TextureComponent implements Component {
+    //Speichert Textur und Atlastextur einer Entität, Atlastextur ist eine datei mit mehreren texturen die für animationen genutzt werden
     private TextureAtlas atlas = null;
     private TextureRegion region = null;
 
