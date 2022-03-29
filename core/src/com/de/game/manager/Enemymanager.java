@@ -42,7 +42,7 @@ public class Enemymanager {
      
         b2dbody.setBody(bodyFactory.makeCircle(x, y, 5, BodyFactory.PLAYER, 4f));
         //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
-        b2dbody.setdimension(5, 5);
+        b2dbody.setdimension(5, 9);
         //Setzen der Playerstats Damage, Leben, Maxleben, Speed, Rüstung
         stats.setStats(10, 50, 50, 1, 20);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll

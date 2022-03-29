@@ -20,7 +20,7 @@ public class WIN_SCREEN extends ScreenAdapter{
         //Deklariert den Controller, nutzt die Tastatur
         controller = new KeyboardController();
         //Lädt den Hintergrund
-        background = game.assetManager.manager.get("Input/game/Gameoverbackground.png");
+        background = game.assetManager.manager.get("Input/game/winbild.png");
     }
 
     @Override

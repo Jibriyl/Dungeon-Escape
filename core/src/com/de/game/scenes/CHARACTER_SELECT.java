@@ -33,7 +33,7 @@ public class CHARACTER_SELECT extends ScreenAdapter{
         cd = 0;
         auswahl = 0;
 
-        //Heir werden die Assets geladen
+        //Hier werden die Assets geladen
     }
 
     @Override

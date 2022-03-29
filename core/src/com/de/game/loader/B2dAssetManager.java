@@ -11,9 +11,15 @@ public class B2dAssetManager {
 	public final String lvl1background = "Input/game/lvl1background.png";
 	public final String gameoverbackground = "Input/game/Gameoverbackground.png";
     public final String gameover = "Input/game/Gameover.png";
+    public final String winscreen = "Input/game/winbild.png";
+    public final String gameoverrahmen = "Input/game/gameoverrahmen.png";
+    public final String gameoverretry = "Input/game/gameoverneustart.png";
+    public final String gameoverleave = "Input/game/gameoverbeenden.png";
+    public final String gameovermain = "Input/game/gameoverhauptmenu.png";
     public final String player = "Output/joshuachar1.atlas";
     public final String slime = "Output/slime.atlas";
     public final String player2 = "Output/Maxchar1.atlas";
+    
     //Player auswahl texturen
     public final String charback = "Input/charauswahl/Back.png";
     public final String charbackrahmen = "Input/charauswahl/Backramen.png";
@@ -36,6 +42,11 @@ public class B2dAssetManager {
         manager.load(slime, TextureAtlas.class);
         manager.load(gameover, Texture.class);
         manager.load(player2, TextureAtlas.class);
+        manager.load(winscreen, Texture.class);
+        manager.load(gameoverrahmen, Texture.class);
+        manager.load(gameoverretry, Texture.class);
+        manager.load(gameoverleave, Texture.class);
+        manager.load(gameovermain, Texture.class);
 
         manager.load(charback, Texture.class);
         manager.load(charbackrahmen, Texture.class);

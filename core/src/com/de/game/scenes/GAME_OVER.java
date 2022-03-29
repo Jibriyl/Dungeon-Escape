@@ -13,10 +13,15 @@ public class GAME_OVER extends ScreenAdapter{
     Main game;
     private Texture gameoverbackground;
     private Texture gameover;
+    private Texture gameoverretry;
+    private Texture gameoverhauptmenu;
+    private Texture gameoverrahmen;
+    private Texture gameoverleave;
     private int auswahl;
     private KeyboardController controller;
     private float cd;
     private String chartype;
+
     
 
     public GAME_OVER (Main game, String chartype){
@@ -27,6 +32,11 @@ public class GAME_OVER extends ScreenAdapter{
         //Laden der Assets
         gameoverbackground = game.assetManager.manager.get("Input/game/Gameoverbackground.png");
         gameover = game.assetManager.manager.get("Input/game/Gameover.png");
+        gameoverretry = game.assetManager.manager.get("Input/game/gameoverneustart.png");
+        gameoverhauptmenu = game.assetManager.manager.get("Input/game/gameoverhauptmenu.png");
+        gameoverrahmen = game.assetManager.manager.get("Input/game/gameoverrahmen.png");       
+        gameoverleave = game.assetManager.manager.get("Input/game/gameoverbeenden.png");
+
         //Speichert den Cooldown damit der Button nicht einmal pro tick geändert werden kann
         cd = 0;
         //Speichert welcher Button aktuell ausgewählt ist
@@ -69,16 +79,22 @@ public class GAME_OVER extends ScreenAdapter{
             //Reduziert die zeit für den Button cooldown
             cd -= delta;
         }
-
-        game.batch.draw(gameoverbackground, 0, 0, 1920, 1080);
-        game.batch.draw(gameover, 760, 760, 400, 140);
-
         //Laden der Assets
+        game.batch.draw(gameoverbackground, 0, 0, 1920, 1080);
+
+        game.batch.draw(gameover, 760, 840, 400, 140);
+        game.batch.draw(gameoverretry, 698, 640, 524, 133);
+        game.batch.draw(gameoverhauptmenu, 698, 440, 524, 133);
+        game.batch.draw(gameoverleave, 698, 240, 524, 133);
+
         if (auswahl == 0){
+            game.batch.draw(gameoverrahmen, 664, 610, 592, 193);
         }
         else if (auswahl == 1){
+            game.batch.draw(gameoverrahmen, 664, 410, 592, 193);
         }
         else if (auswahl == 2){
+            game.batch.draw(gameoverrahmen, 664, 210, 592, 193);
         }
 
         game.batch.end();

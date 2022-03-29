@@ -32,10 +32,7 @@ public class MAIN_MENU extends ScreenAdapter{
         verlassen = game.assetManager.manager.get("Input/main/Verlassen.png");
         cd = 0;
         auswahl = 0;
-        
-
-        //Heir werden die Assets geladen
-
+        //Hier werden die Assets geladen
     }
 
     @Override
