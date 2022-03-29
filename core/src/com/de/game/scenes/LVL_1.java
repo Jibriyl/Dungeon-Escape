@@ -25,6 +25,8 @@ public class LVL_1 extends LVL_0{
         em.createbasicSimpleEnemy(30,50);
         em.createbasicSimpleEnemy(80,30);
         em.createbasicSimpleEnemy(10,30);
+        em.createbasicSimpleEnemy(60,30);
+        em.createbasicSimpleEnemy(120,40);
 
         //Scenery
         sm.createWall(96, 2, 192, 1);

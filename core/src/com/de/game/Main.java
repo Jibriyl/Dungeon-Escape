@@ -1,7 +1,6 @@
 package com.de.game;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.de.game.loader.B2dAssetManager;
@@ -13,12 +12,8 @@ import com.de.game.scenes.WIN_SCREEN;
 
 public class Main extends Game {
     public SpriteBatch batch;
-    public Texture img;
 	public BitmapFont font;
     public B2dAssetManager assetManager = new B2dAssetManager();
-
-
-
 
     @Override
     public void create () {
@@ -29,7 +24,7 @@ public class Main extends Game {
         assetManager.manager.finishLoading();
 
         //Setzen des Start Screens
-        screenset("MAIN_MENU", "player1");        
+        screenset("MAIN_MENU", "");        
     }
 
     @Override

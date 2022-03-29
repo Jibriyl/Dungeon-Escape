@@ -27,6 +27,7 @@ public class B2dAssetManager {
     public final String charJplayer = "Input/charauswahl/Jplayer.png";
     public final String charMplayer = "Input/charauswahl/Mplayer.png";
     public final String charplayerrahmen = "Input/charauswahl/Playerramen.png";
+    
     //Main Menu
     public final String mainbald = "Input/main/kommt_bald.png";
     public final String mainRahmen = "Input/main/Rahmen.png";

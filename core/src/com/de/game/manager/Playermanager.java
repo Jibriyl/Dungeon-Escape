@@ -60,7 +60,7 @@ public class Playermanager {
         //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
         b2dbody.setdimension(width, heigth);
         //Setzen der Playerstats Damage, Leben, Maxleben, Speed, Rüstung
-        stats.setStats(10, 100, 100, 1000, 20);
+        stats.setStats(10, 100, 100, 1000, 0);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
         position.position.set(7,16,0);
         texture.setAtlas(testplayer);
@@ -68,7 +68,7 @@ public class Playermanager {
         stateCom.setstate(StateComponent.STATE_NORMAL); 
         b2dbody.getBody().setUserData(entity);
      
-        //Alle Kompenenten des Spieler der Spieler Entity hinzufügen
+        //Alle Kompenenten des Spielers, der Spieler Entity hinzufügen
         entity.add(b2dbody);
         entity.add(position);
         entity.add(texture);

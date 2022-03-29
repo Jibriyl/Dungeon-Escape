@@ -26,7 +26,6 @@ public class Enemymanager {
         this.bodyFactory = bodyFactory;
         //Lädt die textur in die Klasse
         slimetex = game.assetManager.manager.get("Output/slime.atlas");
-
     }
 
     public void createbasicSimpleEnemy(float x, float y){
@@ -44,7 +43,7 @@ public class Enemymanager {
         //Setzen der größe des Bodys, wird nicht benutzt um die tatsächliche größe zu bestimmen sondern um die Texture richtig zu platzieren
         b2dbody.setdimension(5, 9);
         //Setzen der Playerstats Damage, Leben, Maxleben, Speed, Rüstung
-        stats.setStats(10, 50, 50, 1, 20);
+        stats.setStats(10, 50, 50, 1, 0);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
         position.position.set(5,8,0);
         texture.setAtlas(slimetex);
