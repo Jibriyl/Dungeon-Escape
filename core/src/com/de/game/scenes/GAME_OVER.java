@@ -46,11 +46,11 @@ public class GAME_OVER extends ScreenAdapter{
         if (cd <= 0){
             if (controller.up){
                 auswahl -= 1;
-                cd = 0.5f;
+                cd = 0.2f;
             }
             if (controller.down){
                 auswahl +=1;
-                cd = 0.5f;
+                cd = 0.2f;
             }
             if (auswahl < 0){
                 auswahl = 0;
@@ -68,13 +68,10 @@ public class GAME_OVER extends ScreenAdapter{
 
         //Laden der Assets
         if (auswahl == 0){
-            System.out.println("Retry");
         }
         else if (auswahl == 1){
-            System.out.println("Main");
         }
         else if (auswahl == 2){
-            System.out.println("Exit");
         }
 
         game.batch.end();

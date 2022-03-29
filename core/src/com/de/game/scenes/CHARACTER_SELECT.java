@@ -53,11 +53,11 @@ public class CHARACTER_SELECT extends ScreenAdapter{
         if (cd <= 0){
             if (controller.left){
                 auswahl -= 1;
-                cd = 0.5f;
+                cd = 0.2f;
             }
             if (controller.right){
                 auswahl +=1;
-                cd = 0.5f;
+                cd = 0.2f;
             }
             if (auswahl < 0){
                 auswahl = 0;

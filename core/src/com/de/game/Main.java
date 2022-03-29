@@ -24,8 +24,7 @@ public class Main extends Game {
     public void create () {
         //Vorbereitung des Objekte für die Screens
         batch = new SpriteBatch();
-        font = new BitmapFont();
-        
+        //Laden aller Assets die im game genutzt werden
         assetManager.queueAddImages();
         assetManager.manager.finishLoading();
 
@@ -38,7 +37,7 @@ public class Main extends Game {
         //Löschen der Objekte wenn sie nicht mehr benötigt werden
         batch.dispose();
     }
-
+    //Setscrenn methode mit der von anderen klassen der screen gewechselt werden kann
     public void screenset(String screen, String type){
         if(screen == "LVL_1"){
             setScreen(new LVL_1(this, type));

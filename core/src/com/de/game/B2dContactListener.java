@@ -17,16 +17,20 @@ public class B2dContactListener implements ContactListener {
 		this.debugmode = debugmode;
 	}
 	
+	//Diese Klasse erkennt und speichert für jede entity was die letzte collision war
 	@Override
 	public void beginContact(Contact contact) {
+		//Ermittelt die beiden Kolidierenden Klassen
 		Fixture fa = contact.getFixtureA();
 		Fixture fb = contact.getFixtureB();
 
 		if (debugmode){
+			//wenn der Debug mode aktiv ist wird in der Konsole ausgegeben welceh art von entitys kollidiert sind
 			System.out.println("Contact");
 			System.out.println(fa.getBody().getType()+" has hit "+ fb.getBody().getType());
 		}
 
+		//Wenn es sich um einen Entity handelt, wird ausgeführt
 		if(fa.getBody().getUserData() instanceof Entity){
 			Entity ent = (Entity) fa.getBody().getUserData();
 			entityCollision(ent,fb);
@@ -39,6 +43,7 @@ public class B2dContactListener implements ContactListener {
 	}
 
 	private void entityCollision(Entity ent, Fixture fb) {
+		//
 		if(fb.getBody().getUserData() instanceof Entity){
 			Entity colEnt = (Entity) fb.getBody().getUserData();
 			

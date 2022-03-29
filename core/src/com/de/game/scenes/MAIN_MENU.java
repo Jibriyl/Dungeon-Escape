@@ -54,11 +54,11 @@ public class MAIN_MENU extends ScreenAdapter{
            if (cd <= 0){
             if (controller.up){
                 auswahl -= 1;
-                cd = 0.5f;
+                cd = 0.2f;
             }
             if (controller.down){
                 auswahl +=1;
-                cd = 0.5f;
+                cd = 0.2f;
             }
             if (auswahl < 0){
                 auswahl = 0;

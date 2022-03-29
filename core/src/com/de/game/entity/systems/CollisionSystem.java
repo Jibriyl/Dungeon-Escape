@@ -57,7 +57,6 @@ public class CollisionSystem  extends IteratingSystem {
 			
 					//Fügt dem Spieler den schaden zu der im gegner als schaden gespeichert ist
 					stats.nehmeschaden(gegnerstats.getDamage());
-					System.out.println("player hit enemy" + stats.getLeben());
 				}
 				cc.setCollisionEntity(null); // collision handled reset component
 			}
@@ -72,7 +71,6 @@ public class CollisionSystem  extends IteratingSystem {
 					Vector2 difference = new Vector2(gegnerpos.position.x - lastplayerpos.position.x, gegnerpos.position.y - lastplayerpos.position.y);
 					StatComponent attackStats = collidedEntity.getComponent(StatComponent.class);
 					//Berechnen der richtung in der der gegner zum spieler ist
-					System.out.println("Attack hit Enemy");
 					stats.nehmeschaden(attackStats.getDamage());
 					spielerbody.getBody().applyForceToCenter(difference.x * 200, difference.y * 200,true);
 				}

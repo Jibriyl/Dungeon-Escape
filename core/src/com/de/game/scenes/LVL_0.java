@@ -53,15 +53,18 @@ public class LVL_0 extends ScreenAdapter{
         //Erstellen des Rendersystems
         renderingSystem = new RenderingSystem(sb);
         cam = renderingSystem.getCamera();
+        //Dem Spritebatch eine kamera zuweisen
         sb.setProjectionMatrix(cam.combined);
 
+        //Deklarieren der Engine
         engine = new PooledEngine();
 
+        //Erstellen des Manager mit denen gegner, spieler und scenery erzeugt wird
         pm = new Playermanager(bodyFactory, engine, game);
         em = new Enemymanager(bodyFactory, engine, game);
         sm = new Scenerymanager(bodyFactory, engine, game);
 
-
+        //Hinzufügen aller system zur engine
         engine.addSystem(new PlayerMovementController(controller));
         engine.addSystem(new AnimationSystem());
         engine.addSystem(new PhysicsSystem(world));
@@ -69,6 +72,7 @@ public class LVL_0 extends ScreenAdapter{
         engine.addSystem(renderingSystem);
         engine.addSystem(new SimpleEnemyController());
         engine.addSystem(new LifeSystem(world, game, engine, chartype));
+        //Wenn der debug aktiviert ist werden bodys und kollisioninfo angezeigt
         if(debugmode){
             engine.addSystem(new PhysicsDebugSystem(world, renderingSystem.getCamera()));
         }

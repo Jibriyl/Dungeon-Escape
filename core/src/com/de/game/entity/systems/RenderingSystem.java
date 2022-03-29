@@ -2,8 +2,9 @@ package com.de.game.entity.systems;
 
 import com.de.game.entity.components.TextureComponent;
 import com.de.game.entity.components.TransformComponent;
+import com.de.game.entity.components.TypeComponent;
 import com.de.game.entity.components.B2dBodyComponent;
-
+import com.de.game.entity.components.StatComponent;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -11,11 +12,12 @@ import com.badlogic.ashley.systems.SortedIteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
-import java.util.Comparator;
+//import java.util.Comparator;
 
 public class RenderingSystem extends SortedIteratingSystem {
 
@@ -47,32 +49,44 @@ public class RenderingSystem extends SortedIteratingSystem {
     }
 
     private SpriteBatch batch;
-    private Array<Entity> renderQueue; // an array used to allow sorting of images allowing us to draw images on top of each other
-    private Comparator<Entity> comparator; // a comparator to sort images based on the z position of the transfromComponent
-    private OrthographicCamera cam; // a reference to our camera
+    private Array<Entity> renderQueue; //Sortiert alle ENtitys in ein array ein
+    //private Comparator<Entity> comparator; //
+    private OrthographicCamera cam; //Startet die Camera
 
-    // component mappers to get components from entities
+    //Initialisiert alle ComponentMapper
     private ComponentMapper<TextureComponent> textureM;
     private ComponentMapper<TransformComponent> transformM;
     private ComponentMapper<B2dBodyComponent> bodyM;
+    private ComponentMapper<StatComponent> statm;
+    private ComponentMapper<TypeComponent> tm;
 
-    private Texture lvl1background;
+    //Initialisiert die backgroud textur und anderer Variablen
+    private Texture background;
+    private BitmapFont font;
+    private int leben;
 
 	public RenderingSystem(SpriteBatch batch) {
-        // sorgt dafür das nur entitys mit TransofmComponent und TextureComponent genutzt werden
+        //Sorgt dafür das nur entitys mit TransofmComponent und TextureComponent genutzt werden
         super(Family.all(TransformComponent.class, TextureComponent.class).get(), new ZComparator());
-
+        font = new BitmapFont();
+        //Setzt die scale der Font
+        font.getData().setScale(0.2f);
         //creates out componentMappers
         textureM = ComponentMapper.getFor(TextureComponent.class);
         transformM = ComponentMapper.getFor(TransformComponent.class);
         bodyM = ComponentMapper.getFor(B2dBodyComponent.class);
+        statm = ComponentMapper.getFor(StatComponent.class);
+        tm = ComponentMapper.getFor(TypeComponent.class);
 
-        // create the array for sorting entities
+        //Deklarieren der Lebensvariablen
+        leben = 0;
+
+        //Erstellt Array mit allen Entitys
         renderQueue = new Array<Entity>();
      
-        this.batch = batch;  // set our batch to the one supplied in constructor
+        this.batch = batch;  //Setzt den batch für diese methode dem batch des games
 
-        // set up the camera to match our screen size
+        //Setzt die Kamera so das die zur Bildschirmgröße passt
         cam = new OrthographicCamera(FRUSTUM_WIDTH, FRUSTUM_HEIGHT);
         cam.position.set(FRUSTUM_WIDTH / 2f, FRUSTUM_HEIGHT / 2f, 0);
     }
@@ -84,24 +98,33 @@ public class RenderingSystem extends SortedIteratingSystem {
         //Würde die liste der Texturen sortieren funktioniert aber mit den gegner texturen nicht und sorgt für game crash
         //renderQueue.sort(comparator);
         
-        // update camera and sprite batch
+        //Updaten der Kamera
         cam.update();
         batch.setProjectionMatrix(cam.combined);
         batch.enableBlending();
         batch.begin();
 
-        batch.draw(lvl1background, 0, 0, 192, 108);
+        batch.draw(background, 0, 0, 192, 108);
 
-        // loop der jede entity der queue durchgeht
+        //loop der jede entity der queue durchgeht
         for (Entity entity : renderQueue) {
             TextureComponent tex = textureM.get(entity);
             TransformComponent t = transformM.get(entity);
             B2dBodyComponent body = bodyM.get(entity);
+            TypeComponent type = tm.get(entity);
+            if (type.getType() == TypeComponent.PLAYER){
+                //Jedes mal wenn die spieler entity abgefragt wird. wird die hp von diesem ermittelt
+                StatComponent stats = statm.get(entity);
+                leben = stats.getLeben();
+            }
 
+            //Lebensanzeige des Spielers
+            font.draw(batch, "HP:  " + leben, 3, 100);
+            //Sollte keine Textur vorhanden sein oder die Entity hidden sein wird sie nicht angezeigt
             if (tex.getRegion() == null || t.getisHidden()) {
                 continue;
             }
-
+            //Plaziert die Textur an der stelle wo sich auch der body der entity befindet
             batch.draw(tex.getRegion(), (t.position.x - (body.getWidth()/2)), (t.position.y - (body.getHeight()/2)), body.getWidth(), body.getHeight());
         }
 
@@ -109,16 +132,17 @@ public class RenderingSystem extends SortedIteratingSystem {
         renderQueue.clear();
     }
 
+    //Updated jeden tick alle texturen
     @Override
     public void processEntity(Entity entity, float deltaTime) {
         renderQueue.add(entity);
     }
-
-    // convenience method to get camera
+    //Methode um aus andern klassen auf die Kamera zuzugreifen
     public OrthographicCamera getCamera() {
         return cam;
     }
+    //Methode um den background des levels zu setzten
     public void setBackground(Texture background){
-        lvl1background = background;
+        this.background = background;
     }
 }
