@@ -46,9 +46,8 @@ public class Enemymanager {
         //Setzen der Playerstats Damage, Leben, Maxleben, Speed, Rüstung
         stats.setStats(10, 50, 50, 1, 20);
         //Koordinanten des Spieler setzten, z wird benutzt um zu entscheiden was zuerst abgebildet werden soll
-        position.position.set(5,5,0);
+        position.position.set(5,8,0);
         texture.setAtlas(slimetex);
-        texture.setRegion(texture.getAtlas().findRegion("gound"));
 
         type.setType(TypeComponent.ENEMY);
         stateCom.setstate(StateComponent.STATE_NORMAL); 
@@ -57,7 +56,7 @@ public class Enemymanager {
         //Alle Kompenenten des Spieler der Spieler Entity hinzufügen
         entity.add(b2dbody);
         entity.add(position);
-        //entity.add(texture);
+        entity.add(texture);
         entity.add(stats);
         entity.add(colComp);
         entity.add(type);

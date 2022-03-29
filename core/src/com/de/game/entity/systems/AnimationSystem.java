@@ -135,23 +135,23 @@ public class AnimationSystem extends IteratingSystem {
             }
         }
         else if(type.getType() == TypeComponent.ENEMY){
-            if(t5 <= 0.125){
+            if(t5 <= 1){
                 texture.setRegion(texture.getAtlas().findRegion("gound"));
                 t5 += deltaTime;
             }
-            else if(t5 <= 0.250){
+            else if(t5 <= 2){
                 texture.setRegion(texture.getAtlas().findRegion("jump1"));
                 t5 += deltaTime;
             }
-            else if(t5 <= 0.375){
+            else if(t5 <= 3){
                 texture.setRegion(texture.getAtlas().findRegion("jump2"));
                 t5 += deltaTime;
             }
-            else if(t5 <= 0.5){
+            else if(t5 <= 4){
                 texture.setRegion(texture.getAtlas().findRegion("jump1"));
                 t5 += deltaTime;
             }
-            if(t5 < 0.5){
+            if(t5 > 4){
                 t5 = 0;
             }
         }

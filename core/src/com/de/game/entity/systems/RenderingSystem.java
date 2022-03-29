@@ -81,8 +81,8 @@ public class RenderingSystem extends SortedIteratingSystem {
     public void update(float deltaTime) {
         super.update(deltaTime);
 
-        // sort the renderQueue based on z index
-        renderQueue.sort(comparator);
+        //Würde die liste der Texturen sortieren funktioniert aber mit den gegner texturen nicht und sorgt für game crash
+        //renderQueue.sort(comparator);
         
         // update camera and sprite batch
         cam.update();

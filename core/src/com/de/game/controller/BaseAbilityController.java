@@ -29,10 +29,11 @@ public class BaseAbilityController extends IteratingSystem{
   private KeyboardController controller;
   private float attackcooldown;
   private float dashcooldown;
-  private int dauer;
+  private float dauer;
   private World world;
   boolean inAttack;
   private boolean inDash;
+  private StateComponent spielerstate;
 
   public BaseAbilityController(World world, Engine engine, BodyFactory bodyFactory, KeyboardController keyCon){
     super(Family.all(TypeComponent.class, B2dBodyComponent.class).get());
@@ -56,6 +57,7 @@ public class BaseAbilityController extends IteratingSystem{
   protected void processEntity(Entity entity, float deltaTime){
     TypeComponent type = tm.get(entity);
     B2dBodyComponent body = bodm.get(entity);
+    StateComponent state = sm.get(entity);
 
     //Erstellen der Fahigkeiten des Charakters
     if (type.getType() == TypeComponent.PLAYER){
@@ -63,14 +65,22 @@ public class BaseAbilityController extends IteratingSystem{
       if (controller.space && attackcooldown <= 0 && !inAttack){
         simpleAttack(entity,11f,16f);
         attackcooldown = 0.3f;
+        //Setzt angriff auf true
         inAttack = true;
+        //Setzt den State auf aut angriff damit der spieler sich wärend des angriffs nicht bewegen kann
+        state.setstate(StateComponent.STATE_IN_HIT);
+        //Speichert die spieler state um diese wieder auf normal zu setzten wenn der angriff endet 
+        spielerstate = state;
       }
-      if (controller.shift && dashcooldown <= 0 && !inDash){
+      //Bei druck von shift wird der dash ausgelöst, kann nicht wärend des hittens benutzt werden
+      if (controller.shift && dashcooldown <= 0 && !inDash && state.getstate() != StateComponent.STATE_IN_HIT){
+        //Nutzt die methode dash
         simpleDash(entity);
+        //Setzt Dash cooldown
         dashcooldown = 3;
         inDash = true;
       }
-      //Berechnet der Cooldowns
+      //Berechnen der Cooldowns
       if (attackcooldown > 0){
         attackcooldown = attackcooldown - deltaTime;
       }
@@ -84,15 +94,16 @@ public class BaseAbilityController extends IteratingSystem{
     }
 
 
-    //Entfernt den Angriff nach 20 Gameticks
+    //Entfernt den Angriff nach 0,3 sek
     if (!entity.isScheduledForRemoval()){
       if (type.getType() == TypeComponent.ATTACK){
-        dauer = dauer  + 1;
-        if (dauer == 20){
+        dauer = dauer  + deltaTime;
+        if (dauer >= 0.3f){
           engine.removeEntity(entity);
           world.destroyBody(body.getBody());
           dauer = 0;
           inAttack = false;
+          spielerstate.setstate(StateComponent.STATE_NORMAL);
         }
       }
     }
@@ -101,8 +112,9 @@ public class BaseAbilityController extends IteratingSystem{
   public void simpleDash(Entity entity){
     B2dBodyComponent body = bodm.get(entity);
     StateComponent state = sm.get(entity);
-    System.out.println("Test");
+    //Bestimmt in welche richtung der spieler dasht
     if (state.getLaststate() == "DOWN"){
+      //Applyed eine große kraft auf den spieler körper, für einen tick des games
       body.getBody().applyForceToCenter(0, -100000f, true);
     }
     else if(state.getLaststate() == "UP"){
@@ -121,11 +133,11 @@ public class BaseAbilityController extends IteratingSystem{
     B2dBodyComponent body = bodm.get(playerentity);
     TransformComponent posi = trm.get(playerentity);
     StateComponent state = sm.get(playerentity);
-    //Berechnung wo der Angriff plaziert werden muss
     float x;
     float y;
     float widht;
     float height;
+    //Berechnung wo der Angriff plaziert werden muss
     if (state.getLaststate() == "DOWN"){
       widht = widhtin;
       height = heightin;

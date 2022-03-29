@@ -30,34 +30,41 @@ public class PlayerMovementController extends IteratingSystem{
 	protected void processEntity(Entity entity, float deltaTime) {
 		TypeComponent type = tm.get(entity);
 
+		//stellt fest ob es sich um einen play handelt 
 		if (type.getType() == TypeComponent.PLAYER){
-			B2dBodyComponent b2body = bodm.get(entity);
 			StateComponent state = sm.get(entity);
-			StatComponent player = pm.get(entity);
-			
-			if(b2body.getBody().getLinearVelocity().x <= 0.5f && b2body.getBody().getLinearVelocity().y <= 0.5f){
-				state.setstate(StateComponent.STATE_NORMAL);
-			}
-			
-			if(controller.up){
-				b2body.getBody().applyForceToCenter(0, player.getSpeed(),true);
-				state.setstate(StateComponent.STATE_MOVING_UP);
-				state.setLaststate("UP");
-			}
-			if(controller.down){
-				b2body.getBody().applyForceToCenter(0, -player.getSpeed(),true);
-				state.setstate(StateComponent.STATE_MOVING_DOWN);
-				state.setLaststate("DOWN");
-			}
-			if(controller.left){
-				b2body.getBody().applyForceToCenter(-player.getSpeed(), 0,true);
-				state.setstate(StateComponent.STATE_MOVING_LEFT);
-				state.setLaststate("LEFT");
-			}
-			if(controller.right){
-				b2body.getBody().applyForceToCenter(player.getSpeed(), 0,true);
-				state.setstate(StateComponent.STATE_MOVING_RIGHT);
-				state.setLaststate("RIGHT");
+			if(state.getstate() != StateComponent.STATE_IN_HIT){
+				B2dBodyComponent b2body = bodm.get(entity);
+				StatComponent player = pm.get(entity);
+				
+				if(b2body.getBody().getLinearVelocity().x <= 0.5f && b2body.getBody().getLinearVelocity().y <= 0.5f){
+					//Wenn der spieler still steht wird das erfasst
+					state.setstate(StateComponent.STATE_NORMAL);
+				}
+				
+				if(controller.up){
+					//Versetzt den spieler in bewegung
+					b2body.getBody().applyForceToCenter(0, player.getSpeed(),true);
+					//Setzt die aktuelle state
+					state.setstate(StateComponent.STATE_MOVING_UP);
+					//Setzt die letzte bewegung, diese wird auch nach nicht mehr bewegen gespeichert und ist dazu da das der spieler weiterhin in diese richtugn schaut
+					state.setLaststate("UP");
+				}
+				if(controller.down){
+					b2body.getBody().applyForceToCenter(0, -player.getSpeed(),true);
+					state.setstate(StateComponent.STATE_MOVING_DOWN);
+					state.setLaststate("DOWN");
+				}
+				if(controller.left){
+					b2body.getBody().applyForceToCenter(-player.getSpeed(), 0,true);
+					state.setstate(StateComponent.STATE_MOVING_LEFT);
+					state.setLaststate("LEFT");
+				}
+				if(controller.right){
+					b2body.getBody().applyForceToCenter(player.getSpeed(), 0,true);
+					state.setstate(StateComponent.STATE_MOVING_RIGHT);
+					state.setLaststate("RIGHT");
+				}
 			}
 		}
 	}
